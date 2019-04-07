@@ -6,6 +6,9 @@ import com.wroguide.model.Places;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Piotrek on 08.04.2019.
+ */
 public class ListPlacePresenter {
     private Places places;
 
