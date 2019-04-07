@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Piotrek on 08.04.2019.
  */
-public class ListPlacePresenter {
+public class ListPlacePresenter extends BasePresenter {
     private Places places;
 
     public ListPlacePresenter(Places places) {
