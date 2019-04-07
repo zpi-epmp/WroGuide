@@ -1,4 +1,4 @@
-package com.example.zpi_lista;
+package com.wroguide.view.zpi_lista;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
+import com.wroguide.R;
+
 import java.util.ArrayList;
 
 public class ListElementAdapter extends RecyclerView.Adapter {

@@ -1,10 +1,12 @@
-package com.example.zpi_lista;
+package com.wroguide.view.zpi_lista;
 
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.wroguide.R;
 
 import java.util.ArrayList;
 

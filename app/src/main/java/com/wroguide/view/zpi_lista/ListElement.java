@@ -1,4 +1,4 @@
-package com.example.zpi_lista;
+package com.wroguide.view.zpi_lista;
 
 import android.net.Uri;
 
