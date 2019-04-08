@@ -1,4 +1,4 @@
-package com.wroguide.view.zpi_lista;
+package com.wroguide.view.lista;
 
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;

@@ -1,5 +1,6 @@
-package com.wroguide.view.zpi_lista;
+package com.wroguide.view.lista;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,7 @@ public class ListElementAdapter extends RecyclerView.Adapter {
         this.recyclerView = recyclerView;
     }
 
+    @NonNull
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, final int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.list_element_layout, viewGroup, false);
