@@ -1,4 +1,4 @@
-package com.wroguide.view.atrakcje;
+package com.wroguide.view;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;

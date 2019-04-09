@@ -12,11 +12,11 @@ public class Routes {
         routes = dao.getAll();
     }
 
-    public List<Route> getPlaces() {
+    public List<Route> getRoutes() {
         return routes;
     }
 
-    public void setPlaces(List<Route> routes) {
+    public void setRoutes(List<Route> routes) {
         this.routes = routes;
     }
 }

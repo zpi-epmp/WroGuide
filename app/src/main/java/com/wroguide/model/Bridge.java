@@ -5,4 +5,8 @@ package com.wroguide.model;
  */
 public class Bridge extends Place {
 
+    public Bridge(String image, String content, String title, String description) {
+        super(image, content, title, description);
+    }
+
 }

@@ -6,7 +6,7 @@
     tools:context="com.wroguide.view.PlaceListActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/places"
+        android:id="@+id/route_places"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/list_element_layout" />

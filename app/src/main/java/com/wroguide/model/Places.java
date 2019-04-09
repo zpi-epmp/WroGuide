@@ -1,12 +1,18 @@
 package com.wroguide.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Piotrek on 17.03.2019.
  */
-public class Places {
+public class Places implements Serializable {
     private List<Place> places;
+
+    public Places() {
+        places = new ArrayList<>();
+    }
 
     public  Places(PlaceDAO dao) {
         places = dao.getAll();

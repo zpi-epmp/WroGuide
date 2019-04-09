@@ -5,4 +5,8 @@ package com.wroguide.model;
  */
 public class Monument extends Place {
 
+    public Monument(String image, String content, String title, String description) {
+        super(image, content, title, description);
+    }
+
 }

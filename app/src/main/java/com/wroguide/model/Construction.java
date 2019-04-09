@@ -5,4 +5,8 @@ package com.wroguide.model;
  */
 public class Construction extends Place {
 
+    public Construction(String image, String content, String title, String description) {
+        super(image, content, title, description);
+    }
+
 }
