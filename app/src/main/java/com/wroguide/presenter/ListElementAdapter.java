@@ -22,6 +22,7 @@ public class ListElementAdapter <T extends ListElement> extends RecyclerView.Ada
 
     private List<T> elements;
     private RecyclerView recyclerView;
+    private ListPresenter presenter;
 
     private class ListElementViewHolder extends RecyclerView.ViewHolder {
 
@@ -35,39 +36,18 @@ public class ListElementAdapter <T extends ListElement> extends RecyclerView.Ada
             content = item.findViewById(R.id.list_element_content);
             title = item.findViewById(R.id.list_element_title);
         }
-
     }
 
-    public ListElementAdapter(List<T> elements, RecyclerView recyclerView) {
+    public ListElementAdapter(List<T> elements, RecyclerView recyclerView, ListPresenter presenter) {
         this.elements = elements;
         this.recyclerView = recyclerView;
+        this.presenter = presenter;
     }
 
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, final int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.list_element_layout, viewGroup, false);
-
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!elements.isEmpty()) {
-                    Context context = v.getContext();
-                    Intent intent = null; //ustawić aktywność do wystarowania jeśli lista jest pusta
-                    if (elements.get(0) instanceof Place) {
-                        intent = new Intent(context, PlaceActivity.class);
-                    }
-                    if (elements.get(0) instanceof Route) {
-                        intent = new Intent(context, RouteActivity.class);
-                        int position = recyclerView.getChildLayoutPosition(v);
-                        Route route = (Route) elements.get(position);
-                        intent.putExtra("route" ,route);
-                    }
-                    context.startActivity(intent);
-                }
-            }
-        });
-
+        view.setOnClickListener(presenter);
         return new ListElementViewHolder(view);
     }
 
@@ -91,5 +71,13 @@ public class ListElementAdapter <T extends ListElement> extends RecyclerView.Ada
     @Override
     public int getItemCount() {
         return elements.size();
+    }
+
+    public List<T> getElements() {
+        return elements;
+    }
+
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
     }
 }

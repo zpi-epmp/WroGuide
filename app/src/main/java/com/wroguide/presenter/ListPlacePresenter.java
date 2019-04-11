@@ -1,10 +1,14 @@
 package com.wroguide.presenter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.wroguide.model.Place;
 import com.wroguide.model.PlaceFakeDAO;
 import com.wroguide.model.Places;
+import com.wroguide.view.PlaceActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +27,17 @@ public class ListPlacePresenter extends ListPresenter {
     public ListPlacePresenter(RecyclerView recyclerView) {
         places = new Places(new PlaceFakeDAO());
         createAndSetAdapter(places.getPlaces(), recyclerView);
+    }
+
+    public void onClick(View v) {
+        if(!adapter.getElements().isEmpty()) {
+            Context context = v.getContext();
+            int position = adapter.getRecyclerView().getChildLayoutPosition(v);
+            Intent intent = new Intent(context, PlaceActivity.class);
+            Place place = (Place) adapter.getElements().get(position);
+            intent.putExtra("place", place);
+            context.startActivity(intent);
+        }
     }
 
     public List<Place> getAllPlaces() {

@@ -18,9 +18,7 @@
             android:id="@+id/list_element_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_alignParentLeft="true"
-
-            card_view:srcCompat="@drawable/kamienica" />
+            android:layout_alignParentLeft="true" />
 
         <TextView
             android:id="@+id/list_element_title"

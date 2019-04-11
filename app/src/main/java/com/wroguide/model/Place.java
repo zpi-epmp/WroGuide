@@ -33,4 +33,7 @@ public abstract class Place implements ListElement, Serializable {
         return title;
     }
 
+    public String getDescription() {
+        return description;
+    }
 }
