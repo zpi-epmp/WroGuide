@@ -63,7 +63,7 @@ public class ListElementAdapter <T extends ListElement> extends RecyclerView.Ada
             e.printStackTrace();
         }
         Picasso.with(((ListElementViewHolder) viewHolder).image.getContext()).
-                load(source).into(((ListElementViewHolder) viewHolder).image);
+                load(source).fit().centerCrop().into(((ListElementViewHolder) viewHolder).image);
         ((ListElementViewHolder) viewHolder).content.setText(element.getContent());
         ((ListElementViewHolder) viewHolder).title.setText(element.getTitle());
     }
