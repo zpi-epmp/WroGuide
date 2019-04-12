@@ -8,6 +8,8 @@ import android.view.View;
 import com.wroguide.model.Place;
 import com.wroguide.model.PlaceFakeDAO;
 import com.wroguide.model.Places;
+import com.wroguide.model.RouteFakeDAO;
+import com.wroguide.model.Routes;
 import com.wroguide.view.PlaceActivity;
 
 import java.util.ArrayList;
@@ -25,7 +27,9 @@ public class ListPlacePresenter extends ListPresenter {
     }
 
     public ListPlacePresenter(RecyclerView recyclerView) {
-        places = new Places(new PlaceFakeDAO());
+        //Na razie wczytujemy tylko obiekty z pierwszej trasy
+        places = new Routes(new RouteFakeDAO()).getRoutes().get(0).getPlaces();
+//        places = new Places(new PlaceFakeDAO());
         createAndSetAdapter(places.getPlaces(), recyclerView);
     }
 

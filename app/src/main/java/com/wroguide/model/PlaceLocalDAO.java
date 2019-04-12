@@ -8,7 +8,7 @@ import java.util.Optional;
  */
 public class PlaceLocalDAO implements PlaceDAO {
     @Override
-    public Optional<Place> get(long id) {
+    public Optional<Place> get(int id) {
         return null;
     }
 

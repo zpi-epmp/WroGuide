@@ -8,7 +8,7 @@ import java.util.List;
 public class Routes {
     private List<Route> routes;
 
-    public  Routes(RouteDAO dao) {
+    public Routes(RouteDAO dao) {
         routes = dao.getAll();
     }
 

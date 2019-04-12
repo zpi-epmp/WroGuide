@@ -11,6 +11,8 @@ public abstract class Place implements ListElement, Serializable {
     protected String content;
     protected String title;
     protected String description;
+    protected double latitude;
+    protected double longitude;
 
     protected Place(String image, String content, String title, String description) {
         this.image = image;
@@ -19,7 +21,11 @@ public abstract class Place implements ListElement, Serializable {
         this.description = description;
     }
 
-
+    protected Place(String image, String content, String title, String description, double latitude, double longitude) {
+        this(image, content, title, description);
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
     public String getImage() {
         return image;
@@ -35,5 +41,13 @@ public abstract class Place implements ListElement, Serializable {
 
     public String getDescription() {
         return description;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 }

@@ -9,4 +9,7 @@ public class Building extends Place {
         super(image, content, title, description);
     }
 
+    public Building(String image, String content, String title, String description, double latitude, double longitude) {
+        super(image, content, title, description, latitude, longitude);
+    }
 }

@@ -21,9 +21,15 @@ public class MainActivity extends AppCompatActivity {
         final Intent int1 = new Intent(this, RouteListActivity.class);
         startActivity(int1);
     }
+
     public void goToObjects(View w) {
         final Intent int2 = new Intent(this, PlaceListActivity.class);
         startActivity(int2);
+    }
+
+    public void goToMap(View w) {
+        final Intent int3 = new Intent(this, MapsActivity.class);
+        startActivity(int3);
     }
 }
 

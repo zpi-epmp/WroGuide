@@ -8,7 +8,7 @@ import java.util.Optional;
  */
 public class RouteLocalDAO implements RouteDAO {
     @Override
-    public Optional<Route> get(long id) {
+    public Optional<Route> get(int id) {
         return null;
     }
 

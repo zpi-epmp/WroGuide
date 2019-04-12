@@ -10,38 +10,60 @@
     <Button
         android:id="@+id/button1"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="204dp"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:color/holo_blue_dark"
         android:fontFamily="@font/acme"
         android:onClick="goToRoutes"
+        android:textColor="@android:color/white"
         android:text="TRASY"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView3" />
 
 
     <Button
         android:id="@+id/button2"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="204dp"
-        android:layout_marginEnd="92dp"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
         android:background="@android:color/holo_blue_dark"
         android:fontFamily="@font/acme"
         android:onClick="goToObjects"
+        android:textColor="@android:color/white"
         android:text="OBIEKTY"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/button1"
-        app:layout_constraintTop_toBottomOf="@id/textView3" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/holo_blue_dark"
+        android:fontFamily="@font/acme"
+        android:onClick="goToMap"
+        android:textColor="@android:color/white"
+        android:text="MAPA"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     <TextView
         android:id="@+id/textView"
@@ -75,14 +97,14 @@
     <!--TODO Naprawić wyświetlanie obrazka w stopce ze skylinem Wrocławia - daje błąd:
         TODO java.lang.RuntimeException: Canvas: trying to draw too large(152217600bytes) bitmap.-->
 
-    <!--<ImageView
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="170sp"
         android:src="@drawable/wroclaw"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:contentDescription="Wroclaw" />-->
+        android:contentDescription="Wroclaw" />
 
     <TextView
         android:id="@+id/textView3"

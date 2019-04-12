@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.squareup.picasso.Picasso;
 import com.wroguide.R;
 import com.wroguide.view.RouteElement;
 
@@ -91,7 +92,14 @@ public class MyAdapter extends RecyclerView.Adapter  {
 
         // Picasso.with(((MyViewHolder) viewHolder).routeImage.getContext()).load(element.getPicture()).
         //  resize(100, 100).centerCrop().into(((MyViewHolder) viewHolder).routeImage);
-        ((MyViewHolder) viewHolder).routeImage.setImageResource(element.getPicture());
+//        ((MyViewHolder) viewHolder).routeImage.setImageResource(element.getPicture());
+
+        Picasso.with(((MyViewHolder) viewHolder).routeImage.getContext())
+                .load(element.getPicture())
+                .fit()
+                .centerCrop()
+                .error(R.drawable.ic_error_white)
+                .into(((MyViewHolder) viewHolder).routeImage);
 
     }
 
