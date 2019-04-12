@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="967.74194"
+    android:viewportHeight="967.74194">
+  <group android:translateX="183.87097"
+      android:translateY="183.87097">
+      <path android:fillColor="@android:color/holo_blue_bright" android:name="Shape 1" android:pathData="m74.7 161.6 9.4 -3.4c10.4 -3.8 21.9 1.6 25.6 12l109.4 300.7c3.8 10.4 -1.6 21.9 -12 25.6l-9.4 3.4c-10.4 3.8 -21.9 -1.6 -25.6 -12l-109.4 -300.7c-3.8 -10.4 1.6 -21.9 12 -25.6z"/>
+      <path android:fillColor="@android:color/holo_blue_bright" android:name="Shape 1 copy" android:pathData="m525.3 161.6 -9.4 -3.4c-10.4 -3.8 -21.9 1.6 -25.6 12l-109.4 300.7c-3.8 10.4 1.6 21.9 12 25.6l9.4 3.4c10.4 3.8 21.9 -1.6 25.6 -12l109.4 -300.7c3.8 -10.4 -1.6 -21.9 -12 -25.6z"/>
+      <path android:fillColor="@android:color/white" android:name="Shape 2" android:pathData="m300.1 217.3 9.4 3.4c10.4 3.8 15.7 15.3 12 25.6l-66 181.4c-3.8 10.4 -15.3 15.7 -25.6 12l-9.4 -3.4c-10.4 -3.8 -15.7 -15.3 -12 -25.6l66 -181.4c3.8 -10.4 15.3 -15.7 25.6 -12z"/>
+      <path android:fillColor="@android:color/white" android:name="Shape 3" android:pathData="m318.1 297.3 9.4 -3.4c10.4 -3.8 21.9 1.6 25.6 12l38.6 106.2c3.8 10.4 -1.6 21.9 -12 25.6l-9.4 3.4c-10.4 3.8 -21.9 -1.6 -25.6 -12l-38.6 -106.2c-3.8 -10.4 1.6 -21.9 12 -25.6z"/>
+      <path android:fillColor="@android:color/holo_orange_light" android:name="Shape 5 copy" android:pathData="m203 338h3c2.8 0 5 2.2 5 5v35c0 2.8 -2.2 5 -5 5h-3c-2.8 0 -5 -2.2 -5 -5v-35c0 -2.8 2.2 -5 5 -5z"/>
+      <path android:fillColor="@android:color/holo_orange_light" android:name="Shape 5" android:pathData="m227 278h3c2.8 0 5 2.2 5 5v35c0 2.8 -2.2 5 -5 5h-3c-2.8 0 -5 -2.2 -5 -5v-35c0 -2.8 2.2 -5 5 -5z"/>
+      <path android:fillColor="@android:color/holo_orange_light" android:name="Shape 5 copy 4" android:pathData="m251 219h3c2.8 0 5 2.2 5 5v35c0 2.8 -2.2 5 -5 5h-3c-2.8 0 -5 -2.2 -5 -5v-35c0 -2.8 2.2 -5 5 -5z"/>
+      <path android:fillColor="@android:color/holo_orange_light" android:name="Shape 5 copy 3" android:pathData="m275 159h3c2.8 0 5 2.2 5 5v35c0 2.8 -2.2 5 -5 5h-3c-2.8 0 -5 -2.2 -5 -5v-35c0 -2.8 2.2 -5 5 -5z"/>
+      <path android:fillColor="@android:color/holo_orange_light" android:name="Shape 5 copy 2" android:pathData="m398 338h-3c-2.8 0 -5 2.2 -5 5v35c0 2.8 2.2 5 5 5h3c2.8 0 5 -2.2 5 -5v-35c0 -2.8 -2.2 -5 -5 -5z"/>
+      <path android:fillColor="@android:color/holo_orange_light" android:name="Shape 5 copy 6" android:pathData="m374 278h-3c-2.8 0 -5 2.2 -5 5v35c0 2.8 2.2 5 5 5h3c2.8 0 5 -2.2 5 -5v-35c0 -2.8 -2.2 -5 -5 -5z"/>
+      <path android:fillColor="@android:color/holo_orange_light" android:name="Shape 5 copy 7" android:pathData="m350 219h-3c-2.8 0 -5 2.2 -5 5v35c0 2.8 2.2 5 5 5h3c2.8 0 5 -2.2 5 -5v-35c0 -2.8 -2.2 -5 -5 -5z"/>
+      <path android:fillColor="@android:color/holo_orange_light" android:name="Shape 5 copy 8" android:pathData="m326 159h-3c-2.8 0 -5 2.2 -5 5v35c0 2.8 2.2 5 5 5h3c2.8 0 5 -2.2 5 -5v-35c0 -2.8 -2.2 -5 -5 -5z"/>
+      <path android:fillColor="@android:color/holo_orange_light" android:name="Shape 5 copy 5" android:pathData="m299 99h3c2.8 0 5 2.2 5 5v35c0 2.8 -2.2 5 -5 5h-3c-2.8 0 -5 -2.2 -5 -5v-35c0 -2.8 2.2 -5 5 -5z"/>
+  </group>
+</vector>
