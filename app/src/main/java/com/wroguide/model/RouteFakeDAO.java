@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public class RouteFakeDAO implements RouteDAO {
     static final String LOREM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+    //TODO: LOREM jest wpisane na sztywno w "description" obiektu
 
     List<Route> routes;
 

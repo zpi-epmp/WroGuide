@@ -43,6 +43,8 @@ public class PlaceActivity extends AppCompatActivity {
         textView.setText(place.getTitle());
 
         TextView textView2 = findViewById(R.id.place_description);
-        textView2.setText(place.getDescription());
+//        textView2.setText(place.getDescription());
+        //TODO: chwilowa podmiana na wypisywanie "content" zamiast description:
+        textView2.setText(place.getContent());
     }
 }
