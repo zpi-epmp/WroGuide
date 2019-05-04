@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">wroGuide</string>
     <string name="title_activity_maps">Map</string>
+    <string name="menuItem1">Filtruj</string>
+
+    <string-array name="filterOptions">
+        <item>MOSTY</item>
+        <item>KAMIENICE</item>
+        <item>NAZWA</item>
+
+    </string-array>
 </resources>

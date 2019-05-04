@@ -48,6 +48,8 @@
         </activity>
         <activity android:name=".view.RouteListActivity" />
         <activity android:name=".view.PlaceListActivity" />
+        <activity android:name=".view.PlaceListFilterActivity" />
+        <activity android:name=".view.PlaceListFilteredActivity" />
     </application>
 
 </manifest>
