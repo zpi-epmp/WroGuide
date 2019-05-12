@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">wroGuide</string>
+    <string name="routes">ROUTES</string>
+    <string name="objects">OBJECTS</string>
+    <string name="maps">MAPS</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_objects">Objects</string>
+    <string name="title_activity_routes">Routes</string>
+</resources>

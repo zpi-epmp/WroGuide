@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">wroGuide</string>
     <string name="title_activity_maps">Map</string>
+    <string name="objects">OBIEKTY</string>
+    <string name="routes">TRASY</string>
+    <string name="maps">MAPY</string>
+    <string name="title_activity_objects">Obiekty</string>
+    <string name="title_activity_routes">Trasy</string>
+
     <string name="menuItem1">Filtruj</string>
 
     <string-array name="filterOptions">
