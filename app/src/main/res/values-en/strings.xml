@@ -7,4 +7,12 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_objects">Objects</string>
     <string name="title_activity_routes">Routes</string>
+    <string name="menuItem1">Choose bridges</string>
+    <string name="menuItem2">Choose tenement houses</string>
+    <string name="menuItem3">Choose achitectural gems</string>
+    <string name="menuItem4">Choose Name</string>
+    <string name="textView4">Select object to show</string>
+    <string name="button4">FILTER </string>
+    <string name="textInput">Here enter the name</string>
+    <string name="ToastText">No item in base. Choose another object!</string>
 </resources>
