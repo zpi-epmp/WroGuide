@@ -4,16 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
+
 import com.wroguide.model.Bridge;
 import com.wroguide.model.Building;
+import com.wroguide.model.Construction;
 import com.wroguide.model.Place;
 import com.wroguide.model.Places;
 import com.wroguide.model.RouteFakeDAO;
 import com.wroguide.model.Routes;
 import com.wroguide.view.PlaceActivity;
+
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 /**
@@ -36,10 +39,13 @@ public class ListPlacePresenter extends ListPresenter {
 
 
     public ListPlacePresenter(RecyclerView recyclerView, int choice, String objectName) {
+
         places = new Routes(new RouteFakeDAO()).getRoutes().get(0).getPlaces();
         places.setPlaces(getPlacesByFilterOption(choice, objectName));
         createAndSetAdapter(places.getPlaces(), recyclerView);
+
     }
+
 
     public void onClick(View v) {
         if (!adapter.getElements().isEmpty()) {
@@ -59,14 +65,14 @@ public class ListPlacePresenter extends ListPresenter {
 
     public List<Place> getPlacesByLocation() {
         List<Place> filteredPlaces;
-        //TODO Filtrowanie
+
         filteredPlaces = new ArrayList<>(places.getPlaces());
         return filteredPlaces;
     }
 
     public List<Place> getPlacesByFilterOption(int choice, String objectName) {
 
-        List<Place> filteredPlaces=new ArrayList<>();
+        List<Place> filteredPlaces = new ArrayList<>();
         List<Place> placesToFilter = new ArrayList<>(places.getPlaces());
 
 
@@ -85,9 +91,18 @@ public class ListPlacePresenter extends ListPresenter {
                 break;
             case 2:
                 for (Place p : placesToFilter) {
+                    if (p.getClass() == Construction.class)
+                        filteredPlaces.add(p);
+                }
+                break;
+
+            case 3:
+                for (Place p : placesToFilter) {
                     if (p.getTitle().equals(objectName))
                         filteredPlaces.add(p);
                 }
+
+
                 break;
         }
         return filteredPlaces;
