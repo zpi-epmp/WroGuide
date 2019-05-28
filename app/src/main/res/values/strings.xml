@@ -7,12 +7,14 @@
     <string name="title_activity_objects">Obiekty</string>
     <string name="title_activity_routes">Trasy</string>
 
-    <string name="menuItem1">Filtruj</string>
+    <string name="menuItem1">Wybierz mosty</string>
+    <string name="menuItem2">Wybierz kamienice</string>
+    <string name="menuItem3">Wybierz perełki architektury</string>
+    <string name="menuItem4">Wyszukaj po nazwie</string>
 
-    <string-array name="filterOptions">
-        <item>MOSTY</item>
-        <item>KAMIENICE</item>
-        <item>NAZWA</item>
+    <string name="textView4">Wybierz obiekt, który chcesz wyświetlić: </string>
+    <string name="button4">FILTRUJ </string>
+    <string name="textInput">Tutaj wpisz nazwę</string>
+    <string name="ToastText">Obiektu nie ma w bazie. Wybierz inną nazwę!</string>
 
-    </string-array>
 </resources>
