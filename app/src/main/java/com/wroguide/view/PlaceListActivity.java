@@ -8,12 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.wroguide.R;
 import com.wroguide.presenter.ListPlacePresenter;
 
 
 public class PlaceListActivity extends AppCompatActivity {
+    int choice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,26 @@ public class PlaceListActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.menuItem1: {
+                choice = 0;
+                goToFilteredViaClass();
+
+                return true;
+            }
+            case R.id.menuItem2: {
+
+                choice = 1;
+                goToFilteredViaClass();
+
+                return true;
+            }
+            case R.id.menuItem3: {
+
+                choice = 2;
+                goToFilteredViaClass();
+
+                return true;
+            }
+            case R.id.menuItem4: {
 
                 Intent intent2 = new Intent(this, PlaceListFilterActivity.class);
                 this.startActivity(intent2);
@@ -51,6 +73,15 @@ public class PlaceListActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+
+    public void goToFilteredViaClass() {
+
+        final Intent int4 = new Intent(this, PlaceListFilteredActivity.class);
+        int4.putExtra("choice", choice);
+        int4.putExtra("objectName", "");
+        startActivity(int4);
     }
 
 }
