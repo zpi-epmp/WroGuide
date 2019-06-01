@@ -23,7 +23,11 @@ public class ListRoutePresenter extends ListPresenter {
 
     public ListRoutePresenter(RecyclerView recyclerView) {
         routes = new Routes(new RouteFakeDAO());
-        createAndSetAdapter(routes.getRoutes(), recyclerView);
+        createAndSetAdapter(routes.getRoutes(), recyclerView,"trasy");
+    }
+    public ListRoutePresenter(RecyclerView recyclerView, Routes routes) {
+        this. routes = routes;
+        createAndSetAdapter(routes.getRoutes(), recyclerView,"trasy");
     }
 
     public void onClick(View v) {
@@ -43,7 +47,7 @@ public class ListRoutePresenter extends ListPresenter {
 
     public List<Route> getPlacesByLocation() {
         List<Route> filteredPlaces;
-        //TODO Filtrowanie
+        //TODO Filtrowanie-filtrowanie jest tylo po obiektach-usunac
         filteredPlaces = new ArrayList<>(routes.getRoutes());
         return filteredPlaces;
     }
