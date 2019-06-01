@@ -7,8 +7,8 @@ import com.wroguide.model.Routes;
 
 public class CheckingClass {
     boolean isInList=false;
-    private Places places = new Routes(new RouteFakeDAO()).getRoutes().get(0).getPlaces();
-  public boolean CheckPresenceOfObject(String name)  {
+
+  public boolean CheckPresenceOfObject(String name, Places places)  {
      for (Place p:places.getPlaces()){
 
          if(p.getTitle().equals(name))
