@@ -13,12 +13,14 @@ public abstract class Place implements ListElement, Serializable {
     protected String description;
     protected double latitude;
     protected double longitude;
+    public boolean selected;
 
     protected Place(String image, String content, String title, String description) {
         this.image = image;
         this.content = content;
         this.title = title;
         this.description = description;
+
     }
 
     protected Place(String image, String content, String title, String description, double latitude, double longitude) {
@@ -48,6 +50,17 @@ public abstract class Place implements ListElement, Serializable {
     }
 
     public double getLongitude() {
-        return longitude;
+        return longitude;}
+
+        public boolean isSelected() {
+            return selected;
+        }
+
+        public void setSelected(boolean selected) {
+            this.selected=selected;
+        }
+
+
+
     }
-}
+
