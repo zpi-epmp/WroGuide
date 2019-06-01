@@ -11,12 +11,20 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.wroguide.R;
+import com.wroguide.model.Place;
+import com.wroguide.model.Places;
 import com.wroguide.presenter.ListPlacePresenter;
+
+import java.io.Serializable;
+import java.util.List;
 
 
 public class PlaceListActivity extends AppCompatActivity {
     int choice;
 
+
+
+    ListPlacePresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,8 +33,15 @@ public class PlaceListActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.places);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        int firstLoad= getIntent().getIntExtra("firstLoad",0);
+if(firstLoad==0){
+        presenter = new ListPlacePresenter(recyclerView);
+}
+else {
 
-        ListPlacePresenter presenter = new ListPlacePresenter(recyclerView);
+    Places places = (Places) getIntent().getSerializableExtra("places");
+    presenter=new ListPlacePresenter(recyclerView, places,"obiekty");}
+
         recyclerView.setAdapter(presenter.getAdapter());
     }
 
@@ -64,9 +79,19 @@ public class PlaceListActivity extends AppCompatActivity {
                 return true;
             }
             case R.id.menuItem4: {
-
+                Places places= new Places(presenter.getAllPlaces());
                 Intent intent2 = new Intent(this, PlaceListFilterActivity.class);
+                intent2.putExtra("places",  places);
                 this.startActivity(intent2);
+
+                return true;
+            }
+
+            case R.id.menuItem02: {
+                Places places= new Places(presenter.getAllPlaces());
+                Intent intent6 = new Intent(this, RoadCreateActivity.class);
+                intent6.putExtra("places",  places);
+                this.startActivity(intent6);
 
                 return true;
             }
@@ -77,12 +102,16 @@ public class PlaceListActivity extends AppCompatActivity {
 
 
     public void goToFilteredViaClass() {
-
+         Places places= new Places(presenter.getAllPlaces());
         final Intent int4 = new Intent(this, PlaceListFilteredActivity.class);
         int4.putExtra("choice", choice);
         int4.putExtra("objectName", "");
+        int4.putExtra("places",  places);
         startActivity(int4);
     }
+
+
+
 
 }
 
