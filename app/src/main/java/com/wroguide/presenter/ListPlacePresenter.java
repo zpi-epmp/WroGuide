@@ -25,26 +25,28 @@ import java.util.List;
 public class ListPlacePresenter extends ListPresenter {
     private Places places;
 
-    public ListPlacePresenter(RecyclerView recyclerView, Places places) {
+    public ListPlacePresenter(RecyclerView recyclerView, Places places, String rodzajListy) {
         this.places = places;
-        createAndSetAdapter(places.getPlaces(), recyclerView);
+        createAndSetAdapter(places.getPlaces(), recyclerView, rodzajListy);
     }
 
     public ListPlacePresenter(RecyclerView recyclerView) {
         //Na razie wczytujemy tylko obiekty z pierwszej trasy
         places = new Routes(new RouteFakeDAO()).getRoutes().get(0).getPlaces();
 //        places = new Places(new PlaceFakeDAO());
-        createAndSetAdapter(places.getPlaces(), recyclerView);
+        createAndSetAdapter(places.getPlaces(), recyclerView,"obiekty");
     }
 
 
-    public ListPlacePresenter(RecyclerView recyclerView, int choice, String objectName) {
+    public ListPlacePresenter(RecyclerView recyclerView, Places places, int choice, String objectName) {
 
-        places = new Routes(new RouteFakeDAO()).getRoutes().get(0).getPlaces();
+        this.places = places;
         places.setPlaces(getPlacesByFilterOption(choice, objectName));
-        createAndSetAdapter(places.getPlaces(), recyclerView);
+        createAndSetAdapter(places.getPlaces(), recyclerView, "obiekty");
 
     }
+
+
 
 
     public void onClick(View v) {
