@@ -1,5 +1,9 @@
 package com.wroguide.view;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -12,16 +16,23 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.wroguide.R;
+import com.wroguide.model.FetchURL;
 import com.wroguide.model.Place;
 import com.wroguide.model.PlaceFakeDAO;
 import com.wroguide.model.Places;
+import com.wroguide.model.Route;
 import com.wroguide.model.RouteFakeDAO;
 import com.wroguide.model.Routes;
+import com.wroguide.model.TaskLoadedCallback;
+import com.wroguide.presenter.RouteDrawer;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, TaskLoadedCallback {
 
     private GoogleMap mMap;
+    private Polyline currentPolyline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,17 +58,50 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         Routes routes = new Routes(new RouteFakeDAO());
-
         LatLngBounds.Builder latLngBoundsBuilder = new LatLngBounds.Builder();
 
-        for (Place p : routes.getRoutes().get(0).getPlaces().getPlaces()) {
-            mMap.addMarker(new MarkerOptions().position(new LatLng(p.getLatitude(), p.getLongitude())).title(p.getTitle()));
-            latLngBoundsBuilder.include(new LatLng(p.getLatitude(), p.getLongitude()));
-        }
+        for (Route r : routes.getRoutes()) {
 
-//        LatLng wroclaw = new LatLng(51, 17);
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(wroclaw));
-//        CameraPosition cameraPosition = new CameraPosition.Builder().target(wroclaw).zoom(11).build();
+            Places places = r.getPlaces();
+
+            for (int i = 0; i < places.getPlaces().size() - 1; i++) {
+                Place pA = places.getPlaces().get(i);
+                Place pB = places.getPlaces().get(i + 1);
+                MarkerOptions markerA = new MarkerOptions().position(new LatLng(pA.getLatitude(), pA.getLongitude())).title(pA.getTitle());
+                MarkerOptions markerB = new MarkerOptions().position(new LatLng(pB.getLatitude(), pB.getLongitude())).title(pB.getTitle());
+                mMap.addMarker(markerA);
+
+//                String url = new RouteDrawer().getUrl(markerA.getPosition(), markerB.getPosition(), "walking", getString(R.string.google_maps_key));
+//                new FetchURL(MapsActivity.this).execute(url, "walking");
+
+                latLngBoundsBuilder.include(new LatLng(pA.getLatitude(), pA.getLongitude()));
+                if (i == places.getPlaces().size() - 2) {
+                    mMap.addMarker(markerB);
+                    latLngBoundsBuilder.include(new LatLng(pB.getLatitude(), pB.getLongitude()));
+                }
+            }
+        }
         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBoundsBuilder.build(),100));
+
+        //rysowanie trasy na mapie tylko dla pierwszej trasy:
+        Places places = routes.getRoutes().get(0).getPlaces();
+        for (int i = 0; i < places.getPlaces().size() - 1; i++) {
+            Place pA = places.getPlaces().get(i);
+            Place pB = places.getPlaces().get(i + 1);
+            MarkerOptions markerA = new MarkerOptions().position(new LatLng(pA.getLatitude(), pA.getLongitude())).title(pA.getTitle());
+            MarkerOptions markerB = new MarkerOptions().position(new LatLng(pB.getLatitude(), pB.getLongitude())).title(pB.getTitle());
+
+            String url = new RouteDrawer().getUrl(markerA.getPosition(), markerB.getPosition(), "walking", getString(R.string.google_maps_key));
+            new FetchURL(MapsActivity.this).execute(url, "walking");
+        }
+        //koniec rysowania
+
+    }
+
+    @Override
+    public void onTaskDone(Object... values) {
+//        if (currentPolyline != null)
+//            currentPolyline.remove();
+        currentPolyline = mMap.addPolyline((PolylineOptions) values[0]);
     }
 }
