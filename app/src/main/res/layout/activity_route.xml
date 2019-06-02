@@ -9,6 +9,6 @@
         android:id="@+id/route_places"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/list_element_layout" />
+        tools:listitem="@layout/list_element_layout2" />
 
 </android.support.constraint.ConstraintLayout>

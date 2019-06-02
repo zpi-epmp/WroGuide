@@ -13,9 +13,13 @@ public abstract class ListPresenter <T extends ListElement>
 
     protected ListElementAdapter<T> adapter;
 
-    protected void createAndSetAdapter(List<T> list, RecyclerView rcv) {
-        adapter = new ListElementAdapter<T>(list, rcv, this);
+
+    protected void createAndSetAdapter(List<T> list, RecyclerView rcv, String rodzajListy) {
+        adapter = new ListElementAdapter<T>(list, rcv, this, rodzajListy);
     }
+
+
+
 
     public ListElementAdapter<T> getAdapter() {
         return adapter;

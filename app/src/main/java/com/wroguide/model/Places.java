@@ -13,6 +13,9 @@ public class Places implements Serializable {
     public Places() {
         places = new ArrayList<>();
     }
+    public Places(List list) {
+        places = list;
+    }
 
     public  Places(PlaceDAO dao) {
         places = dao.getAll();

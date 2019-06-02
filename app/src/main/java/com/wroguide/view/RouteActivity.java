@@ -22,7 +22,7 @@ public class RouteActivity extends AppCompatActivity {
 
         Route route = (Route) getIntent().getSerializableExtra("route");
 
-        ListPlacePresenter presenter = new ListPlacePresenter(recyclerView, route.getPlaces());
+        ListPlacePresenter presenter = new ListPlacePresenter(recyclerView, route.getPlaces(),"trasy");
         recyclerView.setAdapter(presenter.getAdapter());
     }
 }

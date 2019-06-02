@@ -50,6 +50,7 @@
             android:label="@string/title_activity_objects"/>
         <activity android:name=".view.PlaceListFilterActivity" />
         <activity android:name=".view.PlaceListFilteredActivity" />
+        <activity android:name=".view.RoadCreateActivity" />
     </application>
 
 </manifest>

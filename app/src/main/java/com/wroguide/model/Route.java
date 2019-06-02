@@ -12,7 +12,7 @@ public class Route implements ListElement, Serializable {
     private String title;
     private Places places;
 
-    protected Route(String image, String description, String title) {
+    public Route(String image, String description, String title) {
         this.image = image;
         this.content = description;
         this.title = title;
@@ -36,5 +36,13 @@ public class Route implements ListElement, Serializable {
 
     public Places getPlaces() {
         return places;
+    }
+
+    public boolean isSelected() {
+        return false;
+    }
+
+    public void setSelected(boolean s) {
+
     }
 }

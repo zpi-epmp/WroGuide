@@ -7,7 +7,12 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 import com.wroguide.R;
+import com.wroguide.model.Place;
+import com.wroguide.model.Places;
 import com.wroguide.presenter.CheckingClass;
+
+import java.io.Serializable;
+import java.util.List;
 
 
 public class PlaceListFilterActivity extends AppCompatActivity {
@@ -22,7 +27,7 @@ public class PlaceListFilterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_filter);
 
         inputTekst= findViewById(R.id.textInput);
-       // inputTekst.setHelperTextColor();
+
         inputTekst.setVisibility(View.VISIBLE);
 
         }
@@ -33,15 +38,17 @@ public class PlaceListFilterActivity extends AppCompatActivity {
 
     public void goToFiltered(View w) {
 
-
+        Places places = (Places)getIntent().getSerializableExtra("places");
         objectName=inputTekst.getText().toString();
         CheckingClass checker=new CheckingClass();
-        boolean checkInfo=checker.CheckPresenceOfObject(objectName);
+        boolean checkInfo=checker.CheckPresenceOfObject(objectName, places);
         if(checkInfo){
             final Intent int4 = new Intent(this, PlaceListFilteredActivity.class);
         int4.putExtra("choice",3);
         int4.putExtra("objectName",objectName);
-        startActivity(int4);}
+            int4.putExtra("places", places);
+            startActivity(int4);
+        }
         else{
             Toast toast = Toast.makeText(getApplicationContext(), getResources().getString(R.string.ToastText), Toast.LENGTH_LONG);
             toast.show();
