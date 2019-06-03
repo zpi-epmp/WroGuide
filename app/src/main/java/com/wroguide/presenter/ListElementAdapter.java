@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -79,14 +80,15 @@ public class ListElementAdapter <T extends ListElement> extends RecyclerView.Ada
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int i) {
         final ListElement element = elements.get(i);
-        int source = 0; //tu ustawić odniesienie do obrazka, który pojawia się w liście,
+        /*int source = 0; //tu ustawić odniesienie do obrazka, który pojawia się w liście,
                         // gdy brak obrazka innego
         try {
             source = Integer.parseInt(element.getImage());
         }
         catch(NumberFormatException e) {
             e.printStackTrace();
-        }
+        }*/
+        String source = element.getImage();
         Picasso.with(((ListElementViewHolder) viewHolder).image.getContext()).
                 load(source).fit().centerCrop().into(((ListElementViewHolder) viewHolder).image);
         ((ListElementViewHolder) viewHolder).content.setText(element.getContent());

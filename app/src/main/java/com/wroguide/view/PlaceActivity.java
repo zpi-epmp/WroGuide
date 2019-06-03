@@ -23,14 +23,16 @@ public class PlaceActivity extends AppCompatActivity {
 
         ImageView imageView = findViewById(R.id.place_image);
 
-        int source = 0; //tu ustawić odniesienie do obrazka, który pojawia się w liście,
+        /*int source = 0; //tu ustawić odniesienie do obrazka, który pojawia się w liście,
                         // gdy brak obrazka innego
         try {
             source = Integer.parseInt(place.getImage());
         }
         catch(NumberFormatException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        String source = place.getImage();
 
         Picasso.with(this)
                 .load(source)

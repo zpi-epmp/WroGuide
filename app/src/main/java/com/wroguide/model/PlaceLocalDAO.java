@@ -3,6 +3,7 @@ package com.wroguide.model;
 import java.util.List;
 import java.util.Optional;
 
+
 /**
  * Created by Piotrek on 07.04.2019.
  */

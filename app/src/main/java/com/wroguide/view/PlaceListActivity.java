@@ -34,14 +34,15 @@ public class PlaceListActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         int firstLoad= getIntent().getIntExtra("firstLoad",0);
-if(firstLoad==0){
-        presenter = new ListPlacePresenter(recyclerView);
-}
-else {
-
-    Places places = (Places) getIntent().getSerializableExtra("places");
-    presenter=new ListPlacePresenter(recyclerView, places,"obiekty");}
-
+        if(firstLoad==0){
+            Places places = (Places) getIntent().getSerializableExtra("places");
+            presenter=new ListPlacePresenter(recyclerView, places,"obiekty");
+            //presenter = new ListPlacePresenter(recyclerView);
+        }
+        else {
+            Places places = (Places) getIntent().getSerializableExtra("places");
+            presenter=new ListPlacePresenter(recyclerView, places,"obiekty");
+        }
         recyclerView.setAdapter(presenter.getAdapter());
     }
 

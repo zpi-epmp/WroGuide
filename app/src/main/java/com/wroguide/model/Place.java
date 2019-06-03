@@ -5,15 +5,20 @@ import java.io.Serializable;
 /**
  * Created by Piotrek on 17.03.2019.
  */
+
 public abstract class Place implements ListElement, Serializable {
 
-    protected String image;
-    protected String content;
-    protected String title;
-    protected String description;
-    protected double latitude;
-    protected double longitude;
+    public String image;
+    public String content;
+    public String title;
+    public String description;
+    public double latitude;
+    public double longitude;
     public boolean selected;
+
+    public Place(){
+
+    }
 
     protected Place(String image, String content, String title, String description) {
         this.image = image;
