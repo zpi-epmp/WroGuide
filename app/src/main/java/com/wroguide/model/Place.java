@@ -9,6 +9,7 @@ import java.io.Serializable;
 public abstract class Place implements ListElement, Serializable {
 
     public String image;
+    public String url;
     public String content;
     public String title;
     public String description;
@@ -32,6 +33,15 @@ public abstract class Place implements ListElement, Serializable {
         this(image, content, title, description);
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    protected Place(String image, String content, String title, String description, double latitude, double longitude, String url){
+        this(image, content, title, description, latitude, longitude);
+        this.url = url;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     public String getImage() {

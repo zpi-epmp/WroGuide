@@ -13,7 +13,9 @@ import android.view.View;
 import com.wroguide.R;
 import com.wroguide.model.Place;
 import com.wroguide.model.Places;
+import com.wroguide.presenter.DataLoader;
 import com.wroguide.presenter.ListPlacePresenter;
+import com.wroguide.presenter.MyDir;
 
 import java.io.Serializable;
 import java.util.List;
@@ -33,6 +35,7 @@ public class PlaceListActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.places);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         int firstLoad= getIntent().getIntExtra("firstLoad",0);
         if(firstLoad==0){
             Places places = (Places) getIntent().getSerializableExtra("places");

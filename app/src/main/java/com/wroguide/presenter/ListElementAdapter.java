@@ -22,6 +22,7 @@ import com.wroguide.model.Route;
 import com.wroguide.view.PlaceActivity;
 import com.wroguide.view.RouteActivity;
 
+import java.io.File;
 import java.util.List;
 
 public class ListElementAdapter <T extends ListElement> extends RecyclerView.Adapter {
@@ -30,7 +31,6 @@ public class ListElementAdapter <T extends ListElement> extends RecyclerView.Ada
     private RecyclerView recyclerView;
     private ListPresenter presenter;
     String rodzajListy;
-
 
     private class ListElementViewHolder extends RecyclerView.ViewHolder {
 
@@ -47,13 +47,6 @@ public class ListElementAdapter <T extends ListElement> extends RecyclerView.Ada
             checkbox = item.findViewById(R.id.checkBox);
             if(rodzajListy.equals("trasy"))
             checkbox.setVisibility(View.INVISIBLE);
-
-
-
-
-
-
-
         }
     }
 
@@ -63,9 +56,6 @@ public class ListElementAdapter <T extends ListElement> extends RecyclerView.Ada
         this.presenter = presenter;
         this.rodzajListy=rodzajListy;
     }
-
-
-
 
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, final int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
@@ -80,17 +70,19 @@ public class ListElementAdapter <T extends ListElement> extends RecyclerView.Ada
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int i) {
         final ListElement element = elements.get(i);
-        /*int source = 0; //tu ustawić odniesienie do obrazka, który pojawia się w liście,
-                        // gdy brak obrazka innego
-        try {
-            source = Integer.parseInt(element.getImage());
+        String source = MyDir.dir + "/" + element.getImage();
+        File file = new File(source);
+        if(file.exists()) {
+            System.out.println("ADAPTER USES IMAGE");
+            Picasso.with(((ListElementViewHolder) viewHolder).image.getContext()).
+                    load(file).fit().centerCrop().into(((ListElementViewHolder) viewHolder).image);
         }
-        catch(NumberFormatException e) {
-            e.printStackTrace();
-        }*/
-        String source = element.getImage();
-        Picasso.with(((ListElementViewHolder) viewHolder).image.getContext()).
-                load(source).fit().centerCrop().into(((ListElementViewHolder) viewHolder).image);
+        else{
+            System.out.println("ADAPTER USES URL");
+            source = element.getUrl();
+            Picasso.with(((ListElementViewHolder) viewHolder).image.getContext()).
+                    load(source).fit().centerCrop().into(((ListElementViewHolder) viewHolder).image);
+        }
         ((ListElementViewHolder) viewHolder).content.setText(element.getContent());
         ((ListElementViewHolder) viewHolder).title.setText(element.getTitle());
 

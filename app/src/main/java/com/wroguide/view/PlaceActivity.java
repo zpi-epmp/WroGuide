@@ -8,7 +8,10 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.wroguide.R;
 import com.wroguide.model.Place;
+import com.wroguide.presenter.MyDir;
 import com.wroguide.presenter.PlacePresenter;
+
+import java.io.File;
 
 public class PlaceActivity extends AppCompatActivity {
 
@@ -23,23 +26,28 @@ public class PlaceActivity extends AppCompatActivity {
 
         ImageView imageView = findViewById(R.id.place_image);
 
-        /*int source = 0; //tu ustawić odniesienie do obrazka, który pojawia się w liście,
-                        // gdy brak obrazka innego
-        try {
-            source = Integer.parseInt(place.getImage());
+
+        String source = MyDir.dir + "/" + place.getImage();
+        File file = new File(source);
+        if(file.exists()) {
+            System.out.println("ACTIVITY USES IMAGE");
+            Picasso.with(this)
+                    .load(file)
+                    .fit()
+                    .centerCrop()
+                    .error(R.drawable.ic_error_white)
+                    .into(imageView);
         }
-        catch(NumberFormatException e) {
-            e.printStackTrace();
-        }*/
-
-        String source = place.getImage();
-
-        Picasso.with(this)
-                .load(source)
-                .fit()
-                .centerCrop()
-                .error(R.drawable.ic_error_white)
-                .into(imageView);
+        else{
+            System.out.println("ACTIVITY USES URL");
+            source = place.getUrl();
+            Picasso.with(this)
+                    .load(source)
+                    .fit()
+                    .centerCrop()
+                    .error(R.drawable.ic_error_white)
+                    .into(imageView);
+        }
 
         TextView textView = findViewById(R.id.place_title);
         textView.setText(place.getTitle());

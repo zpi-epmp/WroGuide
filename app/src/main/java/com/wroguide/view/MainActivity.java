@@ -2,15 +2,25 @@ package com.wroguide.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import com.facebook.stetho.Stetho;
+import com.google.firebase.database.FirebaseDatabase;
 import com.wroguide.R;
+import com.wroguide.model.Place;
+import com.wroguide.model.PlaceDatabaseDAO;
 import com.wroguide.model.Places;
+import com.wroguide.model.RouteDatabaseDAO;
 import com.wroguide.model.Routes;
 import com.wroguide.presenter.DataLoader;
 import com.wroguide.presenter.DataUploader;
+import com.wroguide.presenter.MyDir;
+
+import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,14 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         context = getApplicationContext();
 
-        Stetho.initializeWithDefaults(this);
+        places = (Places) getIntent().getSerializableExtra("places");
+        routes = (Routes) getIntent().getSerializableExtra("routes");
 
-        DataLoader loader = new DataLoader();
-        //DataUploader uploader = new DataUploader();
-        //uploader.uploadPlaces();
-        loader.loadPlaces();
-        places = loader.loadPlaces();
-        routes = loader.loadRoutes();
     }
 
     public void goToRoutes(View w) {
