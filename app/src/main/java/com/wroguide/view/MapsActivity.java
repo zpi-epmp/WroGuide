@@ -1,29 +1,23 @@
 package com.wroguide.view;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.wroguide.R;
 import com.wroguide.model.FetchURL;
 import com.wroguide.model.Place;
-import com.wroguide.model.PlaceFakeDAO;
 import com.wroguide.model.Places;
 import com.wroguide.model.Route;
+import com.wroguide.model.RouteCreator;
 import com.wroguide.model.RouteFakeDAO;
 import com.wroguide.model.Routes;
 import com.wroguide.model.TaskLoadedCallback;
@@ -33,6 +27,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private Polyline currentPolyline;
+    Routes routes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +52,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        Routes routes = new Routes(new RouteFakeDAO());
         LatLngBounds.Builder latLngBoundsBuilder = new LatLngBounds.Builder();
+
+        routes = new Routes(new RouteFakeDAO());
 
         for (Route r : routes.getRoutes()) {
 
@@ -82,6 +78,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBoundsBuilder.build(),100));
+
+        RouteCreator routeCreator = new RouteCreator(routes.getRoutes().get(0).getPlaces());
+        Places newPlaces = routeCreator.shortestPath();
+        Route route = new Route("0","abc","abc");
+        route.setPlaces(newPlaces);
+        routes = new Routes();
+        routes.getRoutes().add(route);
 
         //rysowanie trasy na mapie tylko dla pierwszej trasy:
         Places places = routes.getRoutes().get(0).getPlaces();
