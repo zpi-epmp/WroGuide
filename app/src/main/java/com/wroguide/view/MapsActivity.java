@@ -2,6 +2,7 @@ package com.wroguide.view;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -13,6 +14,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -83,7 +85,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         //wstawianie markerów dla wszystkich atrakcji ze wszystkich tras
-
         if (routes != null) {
             putMarkers(routes);
             mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBoundsBuilder.build(),100));
@@ -98,6 +99,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             putMarkers(places.getPlaces());
             mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBoundsBuilder.build(),100));
         }
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                LatLng latLng = marker.getPosition();
+                Place place = lookupForPlace(latLng);
+                Intent intent = new Intent(context, PlaceActivity.class);
+                intent.putExtra("place", place);
+                context.startActivity(intent);
+            }
+        });
+    }
+
+
+    public Place lookupForPlace(LatLng latLng) {
+        if (routes != null) {
+            for (Route route : routes.getRoutes()) {
+                for (Place place : route.getPlaces().getPlaces()) {
+                    LatLng latlngPlace = new LatLng(place.getLatitude(), place.getLongitude());
+                    if (latLng.equals(latlngPlace)) {
+                        return place;
+                    }
+                }
+            }
+        }
+        if (places != null) {
+            for (Place place : places.getPlaces()) {
+                LatLng latlngPlace = new LatLng(place.getLatitude(), place.getLongitude());
+                if (latLng.equals(latlngPlace)) {
+                    return place;
+                }
+            }
+        }
+        return null;
     }
 
     public void putMarkers(Routes routes) {
@@ -109,7 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    public void putMarkers(List<Place> places) {
+    public void putMarkers(final List<Place> places) {
         if (places != null) {
             for (int i = 0; i < places.size() - 1; i++) {
                 Place pA = places.get(i);
@@ -153,4 +188,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //            currentPolyline.remove();
         currentPolyline = mMap.addPolyline((PolylineOptions) values[0]);
     }
+
 }

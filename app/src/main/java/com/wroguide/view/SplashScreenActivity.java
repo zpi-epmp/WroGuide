@@ -1,11 +1,8 @@
 package com.wroguide.view;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 
 import com.facebook.stetho.Stetho;
 import com.google.firebase.database.FirebaseDatabase;
@@ -13,7 +10,6 @@ import com.wroguide.R;
 import com.wroguide.model.Places;
 import com.wroguide.model.Routes;
 import com.wroguide.presenter.DataLoader;
-import com.wroguide.presenter.DataUploader;
 import com.wroguide.presenter.MyDir;
 
 import java.util.Timer;
@@ -31,7 +27,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         Stetho.initializeWithDefaults(this);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         database.setPersistenceEnabled(true);
 
         final DataLoader loader = new DataLoader();
@@ -51,6 +47,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 int1.putExtra("places", places);
                 int1.putExtra("routes", routes);
                 startActivity(int1);
+                finish();
             }
         }, 5000);
     }
