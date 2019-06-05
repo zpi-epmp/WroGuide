@@ -35,7 +35,9 @@ public class RouteListActivity extends AppCompatActivity {
             }
         else
             {
-                presenter = new ListRoutePresenter(recyclerView);
+                Routes routes = (Routes) getIntent().getSerializableExtra("routes");
+                presenter = new ListRoutePresenter(recyclerView, routes);
+                //presenter = new ListRoutePresenter(recyclerView);
             }
             recyclerView.setAdapter(presenter.getAdapter());
         }
