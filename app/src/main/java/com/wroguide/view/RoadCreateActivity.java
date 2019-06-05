@@ -8,6 +8,7 @@ import android.widget.AutoCompleteTextView;
 
 import com.wroguide.R;
 import com.wroguide.model.Places;
+import com.wroguide.model.RouteCreator;
 import com.wroguide.model.Routes;
 import com.wroguide.presenter.ModelUpdater;
 
@@ -30,7 +31,12 @@ public class RoadCreateActivity extends AppCompatActivity {
     public void goToRoads(View v){
         Places places = (Places) getIntent().getSerializableExtra("places");
         ModelUpdater modelUpd=new ModelUpdater();
-        Routes routes=modelUpd.addNewRoute(places,inputTekst.getText().toString());
+
+        //wyznaczanie najkrótszej trasy
+        RouteCreator routeCreator = new RouteCreator(places);
+        Places placesShortestRoute = routeCreator.shortestPath();
+
+        Routes routes=modelUpd.addNewRoute(placesShortestRoute, inputTekst.getText().toString());
 
 
 

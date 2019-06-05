@@ -62,15 +62,19 @@ public class RouteCreator {
 
     public Places shortestPath() {
         Places newPlaces = new Places();
-        Place currentPlace = nearestPlace(placesNotVisited.getPlaces().get(0));
+        Place currentPlace = null;
+        if (placesNotVisited != null && placesNotVisited.getPlaces().size() > 0) {
+            currentPlace = nearestPlace(placesNotVisited.getPlaces().get(0));
+            newPlaces.getPlaces().add(currentPlace);
+        }
         Place nearestPlace;
         for (int i = 1; i < placesToVisit.getPlaces().size(); i++) {
-            System.out.println("currentPlace: " + currentPlace.getTitle());
+//            System.out.println("currentPlace: " + currentPlace.getTitle());
             nearestPlace = nearestPlace(currentPlace);
             newPlaces.getPlaces().add(nearestPlace);
-            System.out.println("nearestPlace: " + nearestPlace);
-            currentPlace = newPlaces.getPlaces().get(i-1);
-            System.out.println("nearestPlace(?): " + currentPlace.getTitle());
+//            System.out.println("nearestPlace: " + nearestPlace);
+            currentPlace = nearestPlace;
+//            System.out.println("nearestPlace(?): " + currentPlace.getTitle());
         }
 
         return newPlaces;
