@@ -1,6 +1,7 @@
 package com.wroguide.view;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -21,7 +22,6 @@ import com.wroguide.model.Place;
 import com.wroguide.model.Places;
 import com.wroguide.model.Route;
 import com.wroguide.model.RouteCreator;
-import com.wroguide.model.RouteFakeDAO;
 import com.wroguide.model.Routes;
 import com.wroguide.model.TaskLoadedCallback;
 import com.wroguide.presenter.RouteDrawer;
@@ -33,16 +33,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private Polyline currentPolyline;
     private Routes routes;
+    private Places places;
     private LatLngBounds.Builder latLngBoundsBuilder;
+    private static Context context;
+//    public boolean isMapReady = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        context = getApplicationContext();
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        routes = (Routes) getIntent().getSerializableExtra("routes");
+        places = (Places) getIntent().getSerializableExtra("places");
+
         mapFragment.getMapAsync(this);
+
     }
 
 
@@ -59,6 +69,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         latLngBoundsBuilder = new LatLngBounds.Builder();
+//        isMapReady = true;
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -71,58 +82,68 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
         }
 
-        routes = new Routes(new RouteFakeDAO());
-        putMarkers(routes);
-//        for (Route r : routes.getRoutes()) {
-//            List<Place> places = r.getPlaces().getPlaces();
-//            putMarkers(places);
-//        }
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBoundsBuilder.build(),100));
+        //wstawianie markerów dla wszystkich atrakcji ze wszystkich tras
+
+        if (routes != null) {
+            putMarkers(routes);
+            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBoundsBuilder.build(),100));
+        }
 
         //rysowanie trasy -
-        //przykład dla pierwszej trasy ze wszystkich w RouteFakeDAO:
-        RouteCreator routeCreator = new RouteCreator(routes.getRoutes().get(0).getPlaces());
-        Places newPlaces = routeCreator.shortestPath(); //wyznaczenie najkrótszej trasy dla pierwszej trasy
-
-        drawRoute(newPlaces.getPlaces());
+        //dla places
+        if (places != null) {
+            RouteCreator routeCreator = new RouteCreator(places);
+            Places newPlaces = routeCreator.shortestPath(); //wyznaczenie najkrótszej trasy
+            drawRoute(newPlaces.getPlaces());
+            putMarkers(places.getPlaces());
+            mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBoundsBuilder.build(),100));
+        }
     }
 
     public void putMarkers(Routes routes) {
-        for (Route r : routes.getRoutes()) {
-            List<Place> places = r.getPlaces().getPlaces();
-            putMarkers(places);
+        if (routes != null) {
+            for (Route r : routes.getRoutes()) {
+                List<Place> places = r.getPlaces().getPlaces();
+                putMarkers(places);
+            }
         }
     }
 
     public void putMarkers(List<Place> places) {
-        for (int i = 0; i < places.size() - 1; i++) {
-            Place pA = places.get(i);
-            Place pB = places.get(i + 1);
-            MarkerOptions markerA = new MarkerOptions().position(new LatLng(pA.getLatitude(), pA.getLongitude())).title(pA.getTitle());
-            MarkerOptions markerB = new MarkerOptions().position(new LatLng(pB.getLatitude(), pB.getLongitude())).title(pB.getTitle());
-            mMap.addMarker(markerA);
+        if (places != null) {
+            for (int i = 0; i < places.size() - 1; i++) {
+                Place pA = places.get(i);
+                Place pB = places.get(i + 1);
+                MarkerOptions markerA = new MarkerOptions().position(new LatLng(pA.getLatitude(), pA.getLongitude())).title(pA.getTitle());
+                MarkerOptions markerB = new MarkerOptions().position(new LatLng(pB.getLatitude(), pB.getLongitude())).title(pB.getTitle());
+                mMap.addMarker(markerA);
 
-            latLngBoundsBuilder.include(new LatLng(pA.getLatitude(), pA.getLongitude()));
-            if (i == places.size() - 2) {
-                mMap.addMarker(markerB);
-                latLngBoundsBuilder.include(new LatLng(pB.getLatitude(), pB.getLongitude()));
+                latLngBoundsBuilder.include(new LatLng(pA.getLatitude(), pA.getLongitude()));
+                if (i == places.size() - 2) {
+                    mMap.addMarker(markerB);
+                    latLngBoundsBuilder.include(new LatLng(pB.getLatitude(), pB.getLongitude()));
+                }
             }
         }
     }
 
     public void drawRoute(Route route) {
-        drawRoute(route.getPlaces().getPlaces());
+        if (route != null) {
+            drawRoute(route.getPlaces().getPlaces());
+        }
     }
 
     public void drawRoute(List<Place> places) {
-        for (int i = 0; i < places.size() - 1; i++) {
-            Place pA = places.get(i);
-            Place pB = places.get(i + 1);
-            MarkerOptions markerA = new MarkerOptions().position(new LatLng(pA.getLatitude(), pA.getLongitude())).title(pA.getTitle());
-            MarkerOptions markerB = new MarkerOptions().position(new LatLng(pB.getLatitude(), pB.getLongitude())).title(pB.getTitle());
+        if (places != null) {
+            for (int i = 0; i < places.size() - 1; i++) {
+                Place pA = places.get(i);
+                Place pB = places.get(i + 1);
+                MarkerOptions markerA = new MarkerOptions().position(new LatLng(pA.getLatitude(), pA.getLongitude())).title(pA.getTitle());
+                MarkerOptions markerB = new MarkerOptions().position(new LatLng(pB.getLatitude(), pB.getLongitude())).title(pB.getTitle());
 
-            String url = new RouteDrawer().getUrl(markerA.getPosition(), markerB.getPosition(), "walking", getString(R.string.google_maps_key));
-            new FetchURL(MapsActivity.this).execute(url, "walking");
+                String url = new RouteDrawer().getUrl(markerA.getPosition(), markerB.getPosition(), "walking", getString(R.string.google_maps_key));
+                new FetchURL(MapsActivity.this).execute(url, "walking");
+            }
         }
     }
 
