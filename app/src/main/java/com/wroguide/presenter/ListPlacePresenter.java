@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.wroguide.model.Bridge;
 import com.wroguide.model.Building;
@@ -100,10 +99,9 @@ public class ListPlacePresenter extends ListPresenter {
 
             case 3:
                 for (Place p : placesToFilter) {
-                    if (p.getTitle().equals(objectName))
+                    if (p.getTitle().toLowerCase().contains(objectName.toLowerCase()))
                         filteredPlaces.add(p);
                 }
-
 
                 break;
         }
