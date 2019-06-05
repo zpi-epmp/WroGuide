@@ -112,7 +112,7 @@ public class DataUploader {
 
         //MOST ZWIERZYNIECKI PL
         url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/zwierzyniecki.jpg?alt=media&token=e157eb30-cedb-4d21-8159-02a58b14025c";
-        image = "zwierzyniecki,jpg";
+        image = "zwierzyniecki.jpg";
         title = "Most Zwierzyniecki";
         content = "Most ten zlokalizowany jest w bezpośrednim sąsiedztwie Ogradu Zoologicznego (od którego wywodzi się jego współczesna nazwa).";
         description = "Przeszkoda: Stara Odra" +
@@ -495,7 +495,7 @@ public class DataUploader {
 
         //MOST ZWIERZYNIECKI EN
         url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/zwierzyniecki.jpg?alt=media&token=e157eb30-cedb-4d21-8159-02a58b14025c";
-        image = "zwierzyniecki,jpg";
+        image = "zwierzyniecki.jpg";
         title = "Zwierzyniecki Bridge";
         content = "This bridge is located in the immediate vicinity of the Zoological Gardens (from which its modern name originates).";
         description = "Obstacle: Old Oder\n" +
