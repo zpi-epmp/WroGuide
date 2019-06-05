@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Piotrek on 17.03.2019.
  */
 
-public abstract class Place implements ListElement, Serializable {
+public class Place implements ListElement, Serializable {
 
     public String image;
     public String url;

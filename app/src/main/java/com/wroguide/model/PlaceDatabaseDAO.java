@@ -9,6 +9,7 @@ import com.wroguide.presenter.DataLoader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 /**
@@ -23,9 +24,12 @@ public class PlaceDatabaseDAO implements PlaceDAO {
 
     @Override
     public List<Place> getAll() {
+        String lang = Locale.getDefault().getLanguage();
+
         final List<Place> places = new ArrayList<>();
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("bridges_pl");
+        DatabaseReference reference = database.getReference("bridges_" + lang);
         ValueEventListener listener = new ValueEventListener(){
             public void onDataChange(DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()){
@@ -39,6 +43,36 @@ public class PlaceDatabaseDAO implements PlaceDAO {
             }
         };
         reference.addListenerForSingleValueEvent(listener);
+
+        DatabaseReference reference2 = database.getReference("tenements_" + lang);
+        ValueEventListener listener2 = new ValueEventListener(){
+            public void onDataChange(DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    Place building = ds.getValue(Building.class);
+                    places.add(building);
+                }
+            }
+
+            public void onCancelled(DatabaseError error) {
+                error.toException().printStackTrace();
+            }
+        };
+        reference2.addListenerForSingleValueEvent(listener2);
+
+        DatabaseReference reference3 = database.getReference("gems_" + lang);
+        ValueEventListener listener3 = new ValueEventListener(){
+            public void onDataChange(DataSnapshot snapshot) {
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    Place building = ds.getValue(Construction.class);
+                    places.add(building);
+                }
+            }
+
+            public void onCancelled(DatabaseError error) {
+                error.toException().printStackTrace();
+            }
+        };
+        reference3.addListenerForSingleValueEvent(listener3);
         return places;
     }
 

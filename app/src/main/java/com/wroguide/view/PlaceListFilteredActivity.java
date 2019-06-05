@@ -27,7 +27,7 @@ public class PlaceListFilteredActivity extends AppCompatActivity {
 
         int choice = getIntent().getIntExtra("choice", 0);
         places = (Places) getIntent().getSerializableExtra("places");
-        Places placestoFilter = new Places(places.getPlaces());
+        Places placesToFilter = new Places(places.getPlaces());
         String objectName = getIntent().getStringExtra("objectName");
 
         RecyclerView recyclerView = findViewById(R.id.places);
@@ -35,7 +35,7 @@ public class PlaceListFilteredActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
        
 
-        presenter = new ListPlacePresenter(recyclerView, placestoFilter, choice, objectName);
+        presenter = new ListPlacePresenter(recyclerView, placesToFilter, choice, objectName);
         recyclerView.setAdapter(presenter.getAdapter());
     }
 
