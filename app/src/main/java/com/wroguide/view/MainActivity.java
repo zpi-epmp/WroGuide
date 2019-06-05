@@ -16,6 +16,7 @@ import com.wroguide.model.RouteDatabaseDAO;
 import com.wroguide.model.Routes;
 import com.wroguide.presenter.DataLoader;
 import com.wroguide.presenter.DataUploader;
+import com.wroguide.presenter.ModelUpdater;
 import com.wroguide.presenter.MyDir;
 
 import java.io.File;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         places = (Places) getIntent().getSerializableExtra("places");
         routes = (Routes) getIntent().getSerializableExtra("routes");
+
+        ModelUpdater.routesList = routes.getRoutes();
 
     }
 

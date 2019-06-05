@@ -7,11 +7,20 @@ import java.io.Serializable;
  */
 public class Route implements ListElement, Serializable {
 
-    //private String url;
+    private String url;
     private String image;
     private String content;
     private String title;
     private Places places;
+
+    public Route(){
+
+    }
+
+    public Route(String image, String description, String title, String url){
+        this(image, description, title);
+        this.url = url;
+    }
 
     public Route(String image, String description, String title) {
         this.image = image;
@@ -48,6 +57,6 @@ public class Route implements ListElement, Serializable {
     }
 
     public String getUrl(){
-        return null;
+        return url;
     }
 }

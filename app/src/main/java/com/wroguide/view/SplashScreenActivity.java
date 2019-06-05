@@ -35,8 +35,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         database.setPersistenceEnabled(true);
 
         final DataLoader loader = new DataLoader();
-        DataUploader uploader = new DataUploader();
-        uploader.uploadPlaces();
+        //DataUploader uploader = new DataUploader();
+        //uploader.uploadPlaces();
         places = loader.loadPlaces();
         routes = loader.loadRoutes();
 
