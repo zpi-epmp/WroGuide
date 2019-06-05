@@ -1,6 +1,7 @@
 package com.wroguide.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ public class Routes implements Serializable {
         routes = dao.getAll();
     }
     public Routes() {
+        routes = new ArrayList<>();
     }
     public List<Route> getRoutes() {
         return routes;

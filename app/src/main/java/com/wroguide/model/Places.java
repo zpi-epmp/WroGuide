@@ -17,7 +17,7 @@ public class Places implements Serializable {
         places = list;
     }
 
-    public  Places(PlaceDAO dao) {
+    public Places(PlaceDAO dao) {
         places = dao.getAll();
     }
 
