@@ -103,16 +103,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onInfoWindowClick(Marker marker) {
                 LatLng latLng = marker.getPosition();
                 Place place = lookupForPlace(latLng);
-                Intent intent = new Intent(context, PlaceActivity.class);
-                intent.putExtra("place", place);
-                context.startActivity(intent);
+                if (place != null) {
+                    Intent intent = new Intent(context, PlaceActivity.class);
+                    intent.putExtra("place", place);
+                    context.startActivity(intent);
+                }
             }
         });
     }
 
-
     public Place lookupForPlace(LatLng latLng) {
-        if (routes != null) {
+        if (routes != null && routes.getRoutes() != null) {
             for (Route route : routes.getRoutes()) {
                 for (Place place : route.getPlaces().getPlaces()) {
                     LatLng latlngPlace = new LatLng(place.getLatitude(), place.getLongitude());
@@ -122,7 +123,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         }
-        if (places != null) {
+        if (places != null && places.getPlaces() != null) {
             for (Place place : places.getPlaces()) {
                 LatLng latlngPlace = new LatLng(place.getLatitude(), place.getLongitude());
                 if (latLng.equals(latlngPlace)) {
