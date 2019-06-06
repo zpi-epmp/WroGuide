@@ -1,7 +1,10 @@
 package com.wroguide.view;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import com.facebook.stetho.Stetho;
@@ -50,6 +53,10 @@ public class SplashScreenActivity extends AppCompatActivity {
                 finish();
             }
         }, 5000);
-    }
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.INTERNET}, 1);
+        }
+    }
 }
