@@ -8,23 +8,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.wroguide.R;
-import com.wroguide.model.Place;
 import com.wroguide.model.Places;
-import com.wroguide.presenter.DataLoader;
 import com.wroguide.presenter.ListPlacePresenter;
-import com.wroguide.presenter.MyDir;
-
-import java.io.Serializable;
-import java.util.List;
 
 
 public class PlaceListActivity extends AppCompatActivity {
     int choice;
-
-
 
     ListPlacePresenter presenter;
     @Override
@@ -113,9 +104,5 @@ public class PlaceListActivity extends AppCompatActivity {
         int4.putExtra("places",  places);
         startActivity(int4);
     }
-
-
-
-
 }
 
