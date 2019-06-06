@@ -17,7 +17,7 @@
 
     <string name="menuItemfilter1">Powrót do obiektów</string>
 
-    <string name="textView4">Wybierz obiekt, który chcesz wyświetlić: </string>
+    <string name="textView4">Wybierz obiekt do wyświetlenia: </string>
     <string name="textView6">Podaj nazwę trasy: </string>
     <string name="button4">FILTRUJ </string>
     <string name="button5">DODAJ </string>
