@@ -45,14 +45,14 @@ public class DataLoader {
         return routes;
     }
 
-    public void downloadPictures(Places places){
-        System.out.println("DOWNLOAD PLACES SIZE " + places.getPlaces().size());
+    public void downloadPictures(Places places, Routes routes){
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
+
+        System.out.println("DOWNLOAD PLACES SIZE " + places.getPlaces().size());
         for(Place p : places.getPlaces()) {
             String title = p.getImage();
             StorageReference imageRef = storageRef.child(title);
-            try {
                 File localFile = new File(MyDir.dir, title);
                 System.out.println("TRYING TO DOWNLOAD " + localFile.getAbsolutePath());
                 if(!localFile.exists()) {
@@ -70,10 +70,31 @@ public class DataLoader {
                         }
                     });
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+        }
+
+        System.out.println("DOWNLOAD ROUTES SIZE " + routes.getRoutes().size());
+        for(Route r : routes.getRoutes()) {
+            String title = r.getImage();
+            StorageReference imageRef = storageRef.child(title);
+            File localFile = new File(MyDir.dir, title);
+            System.out.println("TRYING TO DOWNLOAD " + localFile.getAbsolutePath());
+            if(!localFile.exists()) {
+                imageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        System.out.println("FILE DOWNLOADED");
+                        // Local temp file has been created
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        System.out.println("DOWNLOAD FAILURE");
+                        // Handle any errors
+                    }
+                });
             }
         }
+
     }
 
 }

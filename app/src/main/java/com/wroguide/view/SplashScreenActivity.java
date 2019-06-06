@@ -15,6 +15,7 @@ import com.wroguide.model.Routes;
 import com.wroguide.presenter.DataLoader;
 import com.wroguide.presenter.DataUploader;
 import com.wroguide.presenter.MyDir;
+import com.wroguide.presenter.Utils;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,10 +30,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        Stetho.initializeWithDefaults(this);
+        //Stetho.initializeWithDefaults(this);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        database.setPersistenceEnabled(true);
+        Utils.getDatabase();
 
         final DataLoader loader = new DataLoader();
         //DataUploader uploader = new DataUploader();
@@ -46,13 +46,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                // this code will be executed after 5 seconds
-                loader.downloadPictures(places);
+                // this code will be executed after 3 seconds
+                loader.downloadPictures(places, routes);
                 int1.putExtra("places", places);
                 int1.putExtra("routes", routes);
                 startActivity(int1);
             }
-        }, 5000);
+        }, 3000);
     }
 
 }

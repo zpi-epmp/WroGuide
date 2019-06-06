@@ -5,6 +5,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.wroguide.presenter.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +24,13 @@ public class RouteDatabaseDAO implements RouteDAO {
     @Override
     public List<Route> getAll() {
         String lang = Locale.getDefault().getLanguage();
+        if(!lang.equals("pl") && !lang.equals("de")){
+            lang = "en";
+        }
+
         final List<Route> routes = new ArrayList<>();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //database.setPersistenceEnabled(true);
+
+        FirebaseDatabase database = Utils.getDatabase();
         DatabaseReference reference = database.getReference("routes_" + lang);
         ValueEventListener listener = new ValueEventListener(){
             public void onDataChange(DataSnapshot snapshot) {
