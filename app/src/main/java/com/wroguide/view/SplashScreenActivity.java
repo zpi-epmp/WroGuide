@@ -11,6 +11,7 @@ import com.wroguide.R;
 import com.wroguide.model.Places;
 import com.wroguide.model.Routes;
 import com.wroguide.presenter.DataLoader;
+import com.wroguide.presenter.DataUploader;
 import com.wroguide.presenter.MyDir;
 import com.wroguide.presenter.Utils;
 
@@ -27,15 +28,16 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        //Stetho.initializeWithDefaults(this);
-
         Utils.getDatabase();
 
         final DataLoader loader = new DataLoader();
+        //BAZA DANYCH MA WYŁĄCZONĄ MOŻLIWOŚĆ DODAWANIA OBIEKTÓW
         //DataUploader uploader = new DataUploader();
         //uploader.uploadPlaces();
+        //uploader.uploadImageList();
         places = loader.loadPlaces();
         routes = loader.loadRoutes();
+        loader.downloadPictures2();
 
         final Intent int1 = new Intent(this, MainActivity.class);
 
@@ -44,7 +46,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // this code will be executed after 5.5 seconds
-                loader.downloadPictures(places, routes);
+                //loader.downloadPictures(places, routes);
                 int1.putExtra("places", places);
                 int1.putExtra("routes", routes);
                 startActivity(int1);

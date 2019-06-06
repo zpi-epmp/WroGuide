@@ -8,6 +8,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.wroguide.presenter.Utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -29,7 +30,7 @@ public class PlaceDatabaseDAO implements PlaceDAO {
             lang = "en";
         }
 
-        final List<Place> places = new ArrayList<>();
+        final List<Place> places = Collections.synchronizedList(new ArrayList<Place>());
 
         FirebaseDatabase database = Utils.getDatabase();
         DatabaseReference reference = database.getReference("bridges_" + lang);
@@ -76,6 +77,7 @@ public class PlaceDatabaseDAO implements PlaceDAO {
             }
         };
         reference3.addListenerForSingleValueEvent(listener3);
+
         return places;
     }
 

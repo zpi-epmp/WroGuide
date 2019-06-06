@@ -1196,4 +1196,31 @@ public class DataUploader {
                 "kamienica.JPG", "Die Route führt durch ungewöhnliche Gebäude in Breslau.","Route: Architekturperlen", "3");
     }
 
+    public void uploadImageList(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference();
+        reference.child("images").child("1").setValue("grun1.jpg");
+        reference.child("images").child("2").setValue("pokoju.jpg");
+        reference.child("images").child("3").setValue("mile1.jpg");
+        reference.child("images").child("4").setValue("redz2.jpg");
+        reference.child("images").child("5").setValue("zwierzyniecki.jpg");
+        reference.child("images").child("6").setValue("tums2.jpg");
+        reference.child("images").child("7").setValue("klary.jpg");
+        reference.child("images").child("8").setValue("gryfy.jpg");
+        reference.child("images").child("9").setValue("zlote.jpg");
+        reference.child("images").child("10").setValue("blekitne.jpg");
+        reference.child("images").child("11").setValue("7elektorow.jpg");
+        reference.child("images").child("12").setValue("zlotyDzban.jpg");
+        reference.child("images").child("13").setValue("zielonaDynia.jpg");
+        reference.child("images").child("14").setValue("zlotyPies.jpg");
+        reference.child("images").child("15").setValue("JiM.jpg");
+        reference.child("images").child("16").setValue("hala.jpg");
+        reference.child("images").child("17").setValue("sede3.jpg");
+        reference.child("images").child("18").setValue("trzono3.jpg");
+        reference.child("images").child("19").setValue("igloo.jpg");
+        reference.child("images").child("20").setValue("KiO.jpg");
+        reference.child("images").child("21").setValue("most.JPG");
+        reference.child("images").child("22").setValue("kamienica.JPG");
+    }
+
 }
