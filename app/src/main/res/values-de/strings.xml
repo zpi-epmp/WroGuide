@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">wroGuide</string>
+    <string name="textView4">Wählen Sie das anzuzeigende Objekt aus</string>
+    <string name="textInput">Hier geben Sie den Namen ein</string>
+    <string name="title_activity_maps">Karte</string>
+    <string name="title_activity_objects">Objekt</string>
+    <string name="title_activity_routes">Routes</string>
+    <string name="routes">ROUTES</string>
+    <string name="objects">OBJEKTE</string>
+    <string name="button5">HINZUFÜGEN</string>
+    <string name="button4">FILTER</string>
+    <string name="maps">KARTEN</string>
+    <string name="menuItem01">Filter</string>
+    <string name="menuItem02">Route hinzufügen</string>
+    <string name="menuItem1">Wählen Sie Brücken</string>
+    <string name="menuItem2">Wählen Sie Wohnhäuser</string>
+    <string name="menuItem3">Wählen Sie Architekturperlen</string>
+    <string name="menuItem4">Wählen Sie Name</string>
+    <string name="menuItemfilter1">Zurück</string>
+    <string name="textView6">Gib den Namen:</string>
+    <string name="ToastText">Das Objekt befindet sich nicht in der Datenbank. Wähle einen anderen Namen!</string>
+</resources>
