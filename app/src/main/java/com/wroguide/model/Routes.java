@@ -10,6 +10,10 @@ import java.util.List;
 public class Routes implements Serializable {
     private List<Route> routes;
 
+    public Routes(List<Route> routes){
+        this.routes = routes;
+    }
+
     public Routes(RouteDAO dao) {
         routes = dao.getAll();
     }

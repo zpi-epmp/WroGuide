@@ -66,8 +66,8 @@ public class PlaceDatabaseDAO implements PlaceDAO {
         ValueEventListener listener3 = new ValueEventListener(){
             public void onDataChange(DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()){
-                    Place building = ds.getValue(Construction.class);
-                    places.add(building);
+                    Place construction = ds.getValue(Construction.class);
+                    places.add(construction);
                 }
             }
 

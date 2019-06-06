@@ -50,7 +50,9 @@ public class DataLoader {
         StorageReference storageRef = storage.getReference();
 
         System.out.println("DOWNLOAD PLACES SIZE " + places.getPlaces().size());
-        for(Place p : places.getPlaces()) {
+        int placesSize = places.getPlaces().size();
+        for(int i = 0; i< placesSize; i++) {
+            Place p = places.getPlaces().get(i);
             String title = p.getImage();
             StorageReference imageRef = storageRef.child(title);
                 File localFile = new File(MyDir.dir, title);
@@ -73,7 +75,9 @@ public class DataLoader {
         }
 
         System.out.println("DOWNLOAD ROUTES SIZE " + routes.getRoutes().size());
-        for(Route r : routes.getRoutes()) {
+        int routesSize = routes.getRoutes().size();
+        for(int i = 0; i< routesSize; i++) {
+            Route r = routes.getRoutes().get(i);
             String title = r.getImage();
             StorageReference imageRef = storageRef.child(title);
             File localFile = new File(MyDir.dir, title);

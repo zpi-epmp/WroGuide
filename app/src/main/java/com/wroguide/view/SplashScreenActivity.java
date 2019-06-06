@@ -14,6 +14,7 @@ import android.view.View;
 import com.facebook.stetho.Stetho;
 import com.google.firebase.database.FirebaseDatabase;
 import com.wroguide.R;
+import com.wroguide.model.Place;
 import com.wroguide.model.Places;
 import com.wroguide.model.Routes;
 import com.wroguide.presenter.DataLoader;
@@ -21,6 +22,8 @@ import com.wroguide.presenter.DataUploader;
 import com.wroguide.presenter.MyDir;
 import com.wroguide.presenter.Utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -50,14 +53,14 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                // this code will be executed after 3 seconds
+                // this code will be executed after 5 seconds
                 loader.downloadPictures(places, routes);
                 int1.putExtra("places", places);
                 int1.putExtra("routes", routes);
                 startActivity(int1);
                 finish();
             }
-        }, 3000);
+        }, 5000);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
