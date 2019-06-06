@@ -21,7 +21,9 @@ public class DataUploader {
        uploadBridgesEn();
        uploadTenementHousesEn();
        uploadGemsEn();
-       //uploadBridgesDe();
+       uploadBridgesDe();
+       uploadTenementHousesDe();
+       uploadGemsDe();
     }
 
     private void uploadRoutePl(Places places, String url, String image, String content, String title, String index){
@@ -38,6 +40,14 @@ public class DataUploader {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference();
         reference.child("routes_en").child(index).setValue(route);
+    }
+
+    private void uploadRouteDe(Places places, String url, String image, String content, String title, String index){
+        Route route = new Route(image, content, title, url);
+        route.setPlaces(places);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference();
+        reference.child("routes_de").child(index).setValue(route);
     }
 
     private void uploadBridgesPl(){
@@ -319,7 +329,7 @@ public class DataUploader {
                 "kamienica.JPG", "Trasa prowadząca przez najpiękniejsze kamienice miasta Wrocław.","Trasa: Kamienice", "2");
     }
 
-    public void uploadGemsPl(){
+    private void uploadGemsPl(){
         String url = "";
         String image = "";
         String title = "";
@@ -384,8 +394,8 @@ public class DataUploader {
         description = "Data budowy: 1975-1982\n" +
                 "Projektant: Krystyna i Marian Barscy\n" +
                 "Opis: Jedne z najbardziej rozpoznawalnych budynków na świecie. Akademki \"Kredka\" i \"Ołówek\" swoje nazwy zawdzięczają wyjątkowej bryle. Stanowią doskonały przykład modernizmu. Zaprojektowane przez sławną rodzinę Barskich specjalistów od architektury uczelnianej.";
-        latitude = 51.0651048;
-        longitude = 17.040282;
+        latitude = 51.114426;
+        longitude = 17.067633;
         Construction building5 = new Construction(image, content, title, description, latitude, longitude, url);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -707,7 +717,7 @@ public class DataUploader {
                 "kamienica.JPG", "A route leading through the most beautiful tenement houses in Wrocław.","Route: Tenement Houses", "2");
     }
 
-    public void uploadGemsEn(){
+    private void uploadGemsEn(){
         String url = "";
         String image = "";
         String title = "";
@@ -772,8 +782,8 @@ public class DataUploader {
         description = "Date of construction: 1975-1982\n" +
                 "Designer: Krystyna and Marian Barscy\n" +
                 "Description: One of the most recognizable buildings in the world. Academies \"Crayon\" and \"Pencil\" owe their names to a unique shape. They are a perfect example of modernism. Designed by the famous family of Barsky specialists from the university architecture.";
-        latitude = 51.0651048;
-        longitude = 17.040282;
+        latitude = 51.114426;
+        longitude = 17.067633;
         Construction building5 = new Construction(image, content, title, description, latitude, longitude, url);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -809,117 +819,381 @@ public class DataUploader {
         //MOST GRUNWALDZKI DE
         url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/grun1.jpg?alt=media&token=09b10b9b-2648-481f-8cda-7d8e4f099cf2";
         image = "grun1.jpg";
-        title = "Most Grunwaldzki";
-        content = "Most Grunwaldzki we Wrocławiu to most wiszący przez rzekę Odrę o konstrukcji stalowej, nitowanej.";
-        description = "Przeszkoda: Odra" +
-                "\nDługość: 112,5 m" +
-                "\nLiczba przęseł: 1 – wiszące" +
-                "\nData budowy: 1908-1910" +
-                "\nProjektant: Richard Plüddemann (architektura), Alfred von Scholtz i Ernst Günthl (konstrukcja), Martin Mayer i Robert Weyrauch (projekt konkursowy)" +
-                "\nOpis: Most Grunwaldzki we Wrocławiu to most wiszący przez rzekę Odrę o konstrukcji stalowej, nitowanej. Elementy nośne wsparte są na pylonach murowanych z cegły klinkierowej i oblicowanych granitem, o wysokości około 20 m. Most powstał w latach 1908-1910 w ramach budowy nowej trasy stanowiącej połączenie między centrum miasta a osiedlami i instytucjami wschodniego Wrocławia. Most początkowo nazywany był mostem Carskim (niem. Kaiserbrücke). Po zakończeniu drugiej wojny światowej nadano mu nazwę mostu Grunwaldzkiego.";
+        title = "Grunwaldbrücke";
+        content = "Die Grunwaldbrücke in Breslau ist eine Hängebrücke über die Oder mit einer Stahlkonstruktion, die vernietet ist.";
+        description = "Hindernis: Oder\n" +
+                "Länge: 112,5 m\n" +
+                "Anzahl der Felder: 1 - hängend\n" +
+                "Erstellungsdatum: 1908-1910\n" +
+                "Designer: Richard Plüddemann (Architektur), Alfred von Scholtz und Ernst Günthl (Konstruktion), Martin Mayer und Robert Weyrauch (Wettbewerbsprojekt)\n" +
+                "Beschreibung: Die Grunwaldbrücke in Breslau ist eine Hängebrücke über die Oder mit einer Stahlkonstruktion, die vernietet ist." +
+                " Die tragenden Elemente stützen sich auf Ziegelmasten aus Klinker und sind mit ca. 20 m hohem Granit verkleidet." +
+                " Die Brücke wurde 1908-1910 im Rahmen des Baus einer neuen Route gebaut, die das Stadtzentrum mit den Siedlungen und Einrichtungen des östlichen Breslau verbindet." +
+                " Die Brücke hieß ursprünglich Kaiserbrücke. Nach dem Ende des Zweiten Weltkriegs erhielt er den Namen der Grunwaldbrücke.";
         latitude = 51.109497;
         longitude = 17.052549;
         Bridge bridge1 = new Bridge(image, content, title, description, latitude, longitude, url);
 
-        //MOST POKOJU PL
+        //MOST POKOJU DE
         url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/pokoju.jpg?alt=media&token=f98a7ec3-b5cf-4050-b50a-fe9218d488a8";
         image = "pokoju.jpg";
-        title = "Most Pokoju";
-        content = "Most Pokoju zrealizowany został w miejsce zniszczonego w trakcie trwania drugiej wojny światowej mostu Lessinga.";
-        description = "Przeszkoda: Odra" +
-                "\nDługość: 125,3 m" +
-                "\nLiczba przęseł: 3" +
-                "\nData budowy: 1954-1959" +
-                "\nProjektant: Jan Kmita" +
-                "\nOpis: Most Pokoju zrealizowany został w miejsce zniszczonego w trakcie trwania drugiej wojny światowej mostu Lessinga. Pierwotny most był konstrukcją czteroprzesłową kratownicową podpartą na kamiennych filarach. Nowa konstrukcja zrealizowana została jako obiekt trójprzęsłowy. Każde przęsło stanowią dwie konstrukcje kablobetonowe oparte są na wspólnych podporach. Podpory pośrednie zrealizowane zostały jako betonowe filary. Od roku 1966 r. most nosi nazwę most Pokoju. Nazwa miała korespondować z Pomnikem Powrotu do Macierzy Ziem Zachodnich i Północnych. Niestety pomnik nigdy nie został wybudowany. Na północnym przyczółku pozostała tablica pamiątkowa, która miała upamiętniać ten pomnik.";
+        title = "Friedensbrücke";
+        content = "Die Friedensbrücke wurde anstelle der im Zweiten Weltkrieg zerstörten Lessingbrücke errichtet.";
+        description = "Hindernis: Oder\n" +
+                "Länge: 125,3 m\n" +
+                "Anzahl der Felder: 3\n" +
+                "Erstellungsdatum: 1954-1959\n" +
+                "Designer: Jan Kmita\n" +
+                "Beschreibung: Die Friedensbrücke wurde anstelle der im Zweiten Weltkrieg zerstörten Lessingbrücke errichtet." +
+                " Die ursprüngliche Brücke war eine vierteilige Gitterstruktur, die auf Steinsäulen getragen wurde." +
+                " Der Neubau wurde als dreistufiges Objekt realisiert. Jede Spannweite besteht aus zwei Kabelbetonkonstruktionen, die auf Verbindungsstützen basieren." +
+                " Zwischenstützen wurden als Betonpfeiler realisiert. Seit 1966 heißt die Brücke Friedensbrücke." +
+                " Der Name sollte mit dem Denkmal der Rückkehr ins Mutterland der West- und Nordterritorien übereinstimmen. Leider wurde das Denkmal nie gebaut." +
+                " Am nördlichen Außenposten befand sich noch eine Gedenktafel, die an dieses Denkmal erinnern sollte.";
         latitude = 51.111739;
         longitude = 17.049236;
         Bridge bridge2 = new Bridge(image, content, title, description, latitude, longitude, url);
 
-        //MOST MILENIJNY PL
+        //MOST MILENIJNY DE
         url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/mile1.jpg?alt=media&token=fafd3892-f7e1-4d97-b915-b4990cfcae5a";
         image = "mile1.jpg";
-        title = "Most Milenijny";
-        content = "Most Milenijny to most wantowy (podwieszany) wybudowany nad Odrą.";
-        description = "Przeszkoda: Odra i Zimowisko Osobowice" +
-                "\nDługość: 923,5 m" +
-                "\nLiczba przęseł: 3" +
-                "\nData budowy: 2002-2004" +
-                "\nProjektant: Piotr Wanecki" +
-                "\ngłówny projektant: Marek Jagiełło" +
-                "\nOpis: Most Milenijny to most wantowy (podwieszany) wybudowany nad Odrą. Stanowi od fragment drogi krajowej nr 5. Konstrukcja oparta jest na dwóch pylonach w kształcie litery H. Długość właściwej przeprawy nad rzeką wynosi 289 m. Budowa mostu kosztowała 160 mln zł.";
+        title = "Millennium-Brücke";
+        content = "Die Millennium-Brücke ist eine Schrägseilbrücke an der Oder.";
+        description = "Hindernis: Oder und Zimowisko Osobowice\n" +
+                "Länge: 923,5 m\n" +
+                "Anzahl der Felder: 3\n" +
+                "Erstellungsdatum: 2002-2004\n" +
+                "Designer: Piotr Wanecki\n" +
+                "Chefdesigner: Marek Jagiełło\n" +
+                "Beschreibung: Die Millennium-Brücke ist eine Schrägseilbrücke an der Oder." +
+                " Es ist aus einem Fragment der Nationalstraße Nr. 5." +
+                " Die Struktur basiert auf zwei H-förmigen Pylonen." +
+                " Die Länge der eigentlichen Überquerung des Flusses beträgt 289 m." +
+                " Der Bau der Brücke kostete 160 Mio. PLN.";
         latitude = 51.134091;
         longitude = 16.993900;
         Bridge bridge3 = new Bridge(image, content, title, description, latitude, longitude, url);
 
-        //MOST RĘDZIŃSKI PL
+        //MOST RĘDZIŃSKI DE
         url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/redz2.jpg?alt=media&token=4fea8e60-e150-4949-b461-b130c757aa03";
         image = "redz2.jpg";
-        title = "Most Rędziński";
-        content = "Most Rędziński to drogowy obiekt wantowy wybudowany w ciągu Autostradowej Obwodnicy Wrocławia.";
-        description = "Przeszkoda: Odra, Wyspa Rędzińska" +
-                "\nDługość: 612 m" +
-                "\nLiczba przęseł: 4" +
-                "\nData budowy: 2008-2011" +
-                "\nProjektant: prof. dr hab. inż. Jan Biliszczuk" +
-                "\nOpis: Most Rędziński to drogowy obiekt wantowy wybudowany w ciągu Autostradowej Obwodnicy Wrocławia. Konstrukcja obiektu zawieszona jest za pomocą 160 want o łącznej długości 25 km na pojedynczym pylonie. Wysokość obiektu to 122m. Jest to najwyższy obiekt wantowy w Polsce.";
+        title = "Rędziński-Brücke";
+        content = "Die Rędziński-Brücke ist eine Schrägseilbrücke auf der Wrocław Ring Road.";
+        description = "Hindernis: Oder, Insel Rędzińska\n" +
+                "Länge: 612 m\n" +
+                "Anzahl der Felder: 4\n" +
+                "Erstellungsdatum: 2008-2011\n" +
+                "Designer: prof. dr hab. Eng. Jan Biliszczuk\n" +
+                "Beschreibung: Die Rędziński-Brücke ist eine Schrägseilbrücke auf der Wrocław Ring Road." +
+                " Die Konstruktion des Bauwerks ist mit 160 Streben mit einer Gesamtlänge von 25 km auf einem einzigen Pylon aufgehängt." +
+                " Die Höhe des Objektes beträgt 122m. Es ist die höchste Schrägseilanlage in Polen.";
         latitude = 51.157573;
         longitude = 16.960763;
         Bridge bridge4 = new Bridge(image, content, title, description, latitude, longitude, url);
 
-        //MOST ZWIERZYNIECKI PL
+        //MOST ZWIERZYNIECKI DE
         url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/zwierzyniecki.jpg?alt=media&token=e157eb30-cedb-4d21-8159-02a58b14025c";
-        image = "zwierzyniecki,jpg";
-        title = "Most Zwierzyniecki";
-        content = "Most ten zlokalizowany jest w bezpośrednim sąsiedztwie Ogradu Zoologicznego (od którego wywodzi się jego współczesna nazwa).";
-        description = "Przeszkoda: Stara Odra" +
-                "\nDługość: 62 m" +
-                "\nLiczba przęseł: 1" +
-                "\nData budowy: 1895-1897" +
-                "\nProjektant: Karl Klimm, Richard Plüddemann, A. Fruhwirth" +
-                "\nOpis: Most ten zlokalizowany jest w bezpośrednim sąsiedztwie Ogradu Zoologicznego (od którego wywodzi się jego współczesna nazwa). Przeprawa w tym miejscu funkcjonowała już od 1655 r. Podczas epidemii dżumy na moście ustanowiony został punkt przepustkowy. Obecny obiekt wybudowany został pod koniec XIX w. Jest to konstrukcja stalowa kratownicowa oparta na granitowych przyczółkach. Konstrukcja nawierzchni podwieszona jest do łukowych kratownic za pomocą wieszaków. Ozdobę obiektu stanowią cztery secesyjne obiekty z czerwonego piaskowca.";
+        image = "zwierzyniecki.jpg";
+        title = "Tiergartenbrücke";
+        content = "Diese Brücke befindet sich in unmittelbarer Nähe des Zoologischen Gartens (von dem der heutige Name stammt).";
+        description = "Hindernis: Alte Oder\n" +
+                "Länge: 62 m\n" +
+                "Anzahl der Felder: 1\n" +
+                "Erstellungsdatum: 1895-1897\n" +
+                "Designer: Karl Klimm, Richard Plüddemann, A. Frühwirth\n" +
+                "Beschreibung: Diese Brücke befindet sich in unmittelbarer Nähe des Zoologischen Gartens (von dem der heutige Name stammt)." +
+                " Der Übergang an dieser Stelle funktioniert seit 1655. Während der Pestepidemie wurde ein Pass auf der Brücke eingerichtet." +
+                " Die heutige Anlage wurde Ende des 19. Jahrhunderts erbaut und ist eine Stahlgitterkonstruktion auf der Basis von Granitaußenposten." +
+                " Die Oberflächenstruktur wird mit Bügeln an gewölbten Fachwerken aufgehängt." +
+                " Das Gebäude ist mit vier Jugendstilobjekten aus rotem Sandstein geschmückt.";
         latitude = 51.108056;
         longitude = 17.07;
         Bridge bridge5 = new Bridge(image, content, title, description, latitude, longitude, url);
 
-        //MOST TUMSKI PL
+        //MOST TUMSKI DE
         url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/tums2.jpg?alt=media&token=6a515106-0a89-4589-9fa5-0f7a3fac1121";
         image = "tums2.jpg";
-        title = "Most Tumski";
-        content = "Zwany także mostem zakochanych stalowy nitowany most łączący Ostrów Tumski z Wyspą Piasek.";
-        description = "Przeszkoda: Odra" +
-                "\nDługość: 52,19 m" +
-                "\nLiczba przęseł: 2" +
-                "\nData budowy: 1889" +
-                "\nProjektant: Alfred von Scholtz" +
-                "\nOpis: Zwany także mostem zakochanych stalowy nitowany most łączący Ostrów Tumski z Wyspą Piasek. Konstrukcje mostowe w tym miejscu budowano już od XII wieku. Obecny obiekt wybudowano przy aktywnym udziale okolicznych rzemieślników przy wykorzystaniu rzeki do transportu materiałów.";
+        title = "Dombrücke";
+        content = "Auch Liebesbrücke genannt, eine Stahlnietbrücke, die Ostrów Tumski mit Wyspa Piasek verbindet.";
+        description = "Hindernis: Masern\n" +
+                "Länge: 52,19 m\n" +
+                "Anzahl der Felder: 2\n" +
+                "Erstellungsdatum: 1889\n" +
+                "Designer: Alfred von Scholtz\n" +
+                "Beschreibung: Auch Liebesbrücke genannt, eine Stahlnietbrücke, die Ostrów Tumski mit Wyspa Piasek verbindet. Hier wurden seit dem 12. Jahrhundert Brückenkonstruktionen errichtet. Die heutige Anlage wurde unter aktiver Beteiligung lokaler Handwerker errichtet, die den Fluss für den Materialtransport nutzen.";
         latitude = 51.114716;
         longitude = 17.042225;
         Bridge bridge6 = new Bridge(image, content, title, description, latitude, longitude, url);
 
-        //MOST ŚW. KLARY PL
+        //MOST ŚW. KLARY DE
         url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/klary.jpg?alt=media&token=a42f0720-baf6-419d-b55c-d5798c9f72f1";
         image = "klary.jpg";
-        title = "Most Św. Klary";
-        content = "Most został wybudowany nad kanałami rynien roboczych nieistniejących już młynów wodnych.";
-        description = "Przeszkoda: Upust Klary" +
-                "\nDługość: 20,6 m" +
-                "\nLiczba przęseł: 2" +
-                "\nData budowy: 1992" +
-                "\nOpis: Most został wybudowany nad kanałami rynien roboczych nieistniejących już młynów wodnych. Konstrukcję nośną mostu stanowią stalowe dwuteowniki. Pomost roboczy wraz z barierkami jest konstrukcją drewnianą.";
+        title = "Clarasbrücke";
+        content = "Die Brücke wurde über die Rinnenkanäle nicht mehr vorhandener Wassermühlen gebaut.";
+        description = "Hindernis: Claras Entlüftung\n" +
+                "Länge: 20,6 m\n" +
+                "Anzahl der Felder: 2\n" +
+                "Erstellungsdatum: 1992\n" +
+                "Designer:\n" +
+                "Beschreibung: Die Brücke wurde über die Rinnenkanäle nicht mehr vorhandener Wassermühlen gebaut. Die Tragkonstruktion der Brücke besteht aus Stahl-I-Profilen. Eine Arbeitsplattform mit Barrieren ist eine Holzkonstruktion.";
         latitude = 51.116667;
         longitude = 17.039167;
         Bridge bridge7 = new Bridge(image, content, title, description, latitude, longitude, url);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference();
-        reference.child("bridges_pl").child("1").setValue(bridge1);
-        reference.child("bridges_pl").child("2").setValue(bridge2);
-        reference.child("bridges_pl").child("3").setValue(bridge3);
-        reference.child("bridges_pl").child("4").setValue(bridge4);
-        reference.child("bridges_pl").child("5").setValue(bridge5);
-        reference.child("bridges_pl").child("6").setValue(bridge6);
-        reference.child("bridges_pl").child("7").setValue(bridge7);
+        reference.child("bridges_de").child("1").setValue(bridge1);
+        reference.child("bridges_de").child("2").setValue(bridge2);
+        reference.child("bridges_de").child("3").setValue(bridge3);
+        reference.child("bridges_de").child("4").setValue(bridge4);
+        reference.child("bridges_de").child("5").setValue(bridge5);
+        reference.child("bridges_de").child("6").setValue(bridge6);
+        reference.child("bridges_de").child("7").setValue(bridge7);
+
+        List<Place> places = new ArrayList<>();
+        places.add(bridge1);
+        places.add(bridge2);
+        places.add(bridge3);
+        places.add(bridge4);
+        places.add(bridge5);
+        places.add(bridge6);
+        places.add(bridge7);
+
+        Places places2 = new Places(places);
+
+        uploadRouteDe(places2, "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/most.JPG?alt=media&token=3d0fe5cc-06f5-4c0a-a908-6bd51971f53f",
+                "most.JPG", "Die Route führt durch die berühmtesten Breslauer Brücken - von historischer Bedeutung sowie von größter Kommunikationsbedeutung.","Route: Brücken", "1");
+    }
+
+    private void uploadTenementHousesDe(){
+        String url = "";
+        String image = "";
+        String title = "";
+        String content = "";
+        String description = "";
+        double latitude = 0;
+        double longitude = 0;
+
+        //KAMIENICA POD GRYFAMI DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/gryfy.jpg?alt=media&token=54ef1d2a-9102-4eca-8daa-6b3e47e49c1c";
+        image = "gryfy.jpg";
+        title = "Mietshaus unter Greifen";
+        content = "Ursprünglich befanden sich an dieser Stelle zwei Häuser, deren Überreste sich im Keller des Gebäudes befinden.";
+        description = "Adresse: Rynek 2\n" +
+                "Erstellungsdatum: 1300 \n" +
+                "Designer: Friedrich Gross\n" +
+                "Beschreibung: Ursprünglich befanden sich an dieser Stelle zwei Häuser, deren Überreste sich im Keller des Gebäudes befinden. In den Jahren 1587-1589 wurden die Mietshäuser im Stil des niederländischen Manierismus umgebaut." +
+                " Das Gebäude zeichnet sich durch eine charakteristische Erhebung mit Reliefs aus. Die Spitze ist mit vier symmetrischen Löwen-, Adler- und Greifenpaaren verziert. Das Portal des Gebäudes besteht aus Sandstein. Er ist mit Wappenstiftern geschmückt: Konrad von Költsch und seine Frau.";
+        latitude = 51.110208;
+        longitude = 17.030392;
+        Building building1 = new Building(image, content, title, description, latitude, longitude, url);
+
+        //KAMIENICA POD ZŁOTYM SŁOŃCEM DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/zlote.jpg?alt=media&token=9c7c2476-e547-443e-b98f-fd974f0671ce";
+        image = "zlote.jpg";
+        title = "Mietshaus unter der goldenen Sonne";
+        content = "Ein Haus in seiner Form wurde 1694-95 als Ergebnis der Rekonstruktion von zwei an dieser Stelle stehenden Häusern erbaut.";
+        description = "Adresse: Rynek 6\n" +
+                "Erstellungsdatum: XIII Jahrhundert\n" +
+                "Designer: Johann Lucas von Hildebrandt\n" +
+                "Beschreibung: Ein Haus in seiner Form wurde 1694-95 als Ergebnis der Rekonstruktion von zwei an dieser Stelle stehenden Häusern erbaut. Es ist ein Beispiel für Barockkunst. Bemerkenswert ist das Balkonportal und eine Skulptur, die die Sonne auf der Fassade darstellt. Das Mietshaus war mit der Blauen Sonne und dem Mietshaus unter den sieben Kurfürsten verbunden und war eine Residenz für die in Breslau lebenden Monarchen. Derzeit gibt es hier ein Museum von Pan Tadeusz.";
+        latitude = 51.110208;
+        longitude = 17.030392;
+        Building building2 = new Building(image, content, title, description, latitude, longitude, url);
+
+        //KAMIENICA POD BŁĘKITNYM SŁOŃCEM DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/blekitne.jpg?alt=media&token=3c914c5f-1248-4ec7-bdec-67e020d5eb12";
+        image = "blekitne.jpg";
+        title = "Mietshaus unter der blauen Sonne";
+        content = "Mehrfach umgebautes Mietshaus, das mit den Nachbargebäuden verbunden war.";
+        description = "Adresse: Rynek 7\n" +
+                "Erstellungsdatum: XIV. Jahrhundert\n" +
+                "Designer: Leo Schlesinger\n" +
+                "Beschreibung: Mehrfach umgebautes Mietshaus, das mit den Nachbargebäuden verbunden war. 1802 erhielt die Fassade des Gebäudes einen Empire-Entwurf. Die jetzige Form erhielt sie 1901 nach einer gründlichen Rekonstruktion, das Gebäude wurde um ein Stockwerk erhöht, eine neue Fassade mit drei Zinnen im Jugendstil errichtet, die Innenräume für die Bedürfnisse eines Mietshauses umgebaut und ein Aufzug hinzugefügt. Die letzte Renovierung fand 2013 nach einem Dachbrand statt.";
+        latitude = 51.110208;
+        longitude = 17.030392;
+        Building building3 = new Building(image, content, title, description, latitude, longitude, url);
+
+        //KAMIENICA POD 7 ELEKTORAMI DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/7elektorow.jpg?alt=media&token=eb978915-7529-4068-9a23-1146bbd06b51";
+        image = "7elektorow.jpg";
+        title = "Mietshaus unter sieben Wählern";
+        content = "Ist eines der ältesten Gebäude auf dem Markt.";
+        description = "Adresse: Rynek 8\n" +
+                "Erstellungsdatum: XIII Jahrhundert\n" +
+                "Designer: Giacomo Scianzi\n" +
+                "Beschreibung: Ist eines der ältesten Gebäude auf dem Markt. Es war durch eine Passage aus dem Mietshaus unter der blauen Sonne verbunden. Das Gebäude wurde mehrfach umgebaut. Bemerkenswert ist, dass das Gebäude aus dem Jahr 1672 im Barockstil erbaut wurde und an der Fassade Gemälde der Kurfürsten und des Kaisers Leopold sowie ein Säulenportal mit einer Adlerfigur mit Symbolen der Macht angebracht wurden.";
+        latitude = 51.110056;
+        longitude = 17.030222;
+        Building building4 = new Building(image, content, title, description, latitude, longitude, url);
+
+        //KAMIENICA POD ZŁOTYM DZBANEM DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/zlotyDzban.jpg?alt=media&token=e42c954a-c358-4ac9-a40c-7efcd9672b45";
+        image = "zlotyDzban.jpg";
+        title = "Mietshaus unter dem goldenen Krug";
+        content = "Im Hof des Mietshauses befand sich im Mittelalter eine Brauerei.";
+        description = "Adresse: Rynek 22\n" +
+                "Erstellungsdatum: XIII Jahrhundert\n" +
+                "Designer: unbekannt, Rekonstruktion: Zbigniew Malinowski, Marcin Bukowski\n" +
+                "Beschreibung: Im Hof des Mietshauses befand sich im Mittelalter eine Brauerei. Von der Brauerei bis zum Vestibül von Piwnica Świdnicka betrieb er einen unterirdischen Tunnel für den Transport von Bierfässern, der bis heute erhalten ist. Das Mietshaus wurde 1945 weitgehend zerstört, 1955 wieder aufgebaut. nach dem blick, den es um 1800 hatte.";
+        latitude = 51.109222;
+        longitude = 17.031861;
+        Building building5 = new Building(image, content, title, description, latitude, longitude, url);
+
+        //KAMIENICA POD ZIELONĄ DYNIĄ DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/zielonaDynia.jpg?alt=media&token=54d00382-87bc-4f0f-ab5c-dc3e73bf747c";
+        image = "zielonaDynia.jpg";
+        title = "Mietshaus unter dem grünen Kürbis";
+        content = "Das Haus wurde 1541 im Renaissancestil umgebaut.";
+        description = "Adresse: Rynek 23\n" +
+                "Erstellungsdatum: XIII Jahrhundert\n" +
+                "Designer: unbekannt, Rekonstruktion von Celina Różycka, Marian Bukowski\n" +
+                "Beschreibung: Das Haus wurde 1541 im Renaissancestil umgebaut. Bemerkenswert sind die drei Fensterachsen der Fassade und die Dachspitze mit Pilastern. Während des Zweiten Weltkriegs wurde das Mietshaus abgerissen und in den Jahren 1952-1960 in der Renaissanceform wieder aufgebaut. Auf dem rekonstruierten Portal steht eine lateinische Inschrift: \"Das Wort des Herrn bleibt für immer\"";
+        latitude = 51.109194;
+        longitude = 17.031861;
+        Building building6 = new Building(image, content, title, description, latitude, longitude, url);
+
+        //KAMIENICA POD ZŁOTYM PSEM DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/zlotyPies.jpg?alt=media&token=03863206-c7c1-402e-afc5-3877847e4b3d";
+        image = "zlotyPies.jpg";
+        title = "Mietshaus am Goldenen Hund";
+        content = "Das ursprüngliche Mietshaus wurde im gotischen Stil erbaut.";
+        description = "Adresse: Rynek 41\n" +
+                "Erstellungsdatum: XIII Jahrhundert\n" +
+                "Designer: Jan Kalckbrenner\n" +
+                "Beschreibung: Das ursprüngliche Mietshaus wurde im gotischen Stil erbaut. 1713 wurde es im Barockstil umgebaut. Die Fenster wurden mit Putten und Giebeln verziert, Rustikationen, Gesimse und ein Barockgiebel wurden hinzugefügt. Im Jahr 1730 wurde das Mietshaus mit einem Portal mit Säulen und einem Emblem mit einem goldenen Hund angereichert. Es wurde 1945 zerstört und 1994 von Grund auf neu aufgebaut.";
+        latitude = 51.110402;
+        longitude = 17.033530;
+        Building building7 = new Building(image, content, title, description, latitude, longitude, url);
+
+        //KAMIENICE POD JAŚ I MAŁGOSIA DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/JiM.jpg?alt=media&token=b2b25ca5-4685-4810-977e-f9173f6703ab";
+        image = "JiM.jpg";
+        title = "Mietshänsel und Gretel";
+        content = "Zwei kleine Stadthäuser, die durch eine Arkade miteinander verbunden sind.";
+        description = "Adresse: ul. Mikolaja 1\n" +
+                "Erstellungsdatum: XV Jahrhundert\n" +
+                "Designer: unbekannt\n" +
+                "Beschreibung: Zwei kleine Stadthäuser, die durch eine Arkade miteinander verbunden sind. Dies war der Eingang zum ehemaligen Friedhof auf dem Kirchhof. Hier gab es kirchliche Wohnungen. Das Haus \"Małgosia\" wurde 1564 umgebaut. Die Erhebung von Süden wurde mit einem hohen manieristischen Giebel mit Steinkuppeln gekrönt, Steinrahmen aller Fenster wurden hinzugefügt, ein Gitter im Fenster mit dem Emblem, das gekreuzte Schlüssel darstellt.";
+        latitude = 51.111167;
+        longitude = 17.030694;
+        Building building8 = new Building(image, content, title, description, latitude, longitude, url);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference();
+        reference.child("tenements_de").child("1").setValue(building1);
+        reference.child("tenements_de").child("2").setValue(building2);
+        reference.child("tenements_de").child("3").setValue(building3);
+        reference.child("tenements_de").child("4").setValue(building4);
+        reference.child("tenements_de").child("5").setValue(building5);
+        reference.child("tenements_de").child("6").setValue(building6);
+        reference.child("tenements_de").child("7").setValue(building7);
+        reference.child("tenements_de").child("8").setValue(building8);
+
+        List<Place> places = new ArrayList<>();
+        places.add(building1);
+        places.add(building2);
+        places.add(building3);
+        places.add(building4);
+        places.add(building5);
+        places.add(building6);
+        places.add(building7);
+        places.add(building8);
+
+        Places places2 = new Places(places);
+
+        uploadRouteDe(places2, "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/kamienica.JPG?alt=media&token=f2f88a97-e956-4070-b84e-c9074d5d2741",
+                "kamienica.JPG", "Eine Route, die durch die schönsten Wohnhäuser in Breslau führt.","Route: Wohnhäuser", "2");
+    }
+
+    private void uploadGemsDe(){
+        String url = "";
+        String image = "";
+        String title = "";
+        String content = "";
+        String description = "";
+        double latitude = 0;
+        double longitude = 0;
+
+        //HALA STULECIA DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/hala.jpg?alt=media&token=4a911b19-8010-49a7-8f9b-63ae624a5192";
+        image = "hala.jpg";
+        title = "Jahrhunderthalle";
+        content = "Ein Sport- und Unterhaltungsgebäude, das anlässlich des 100. Jahrestages der Verkündigung Friedrich Wilhelms III. Erbaut wurde und zum allgemeinen Widerstand gegen Napoleon Bonaparte aufrief.";
+        description = "Erstellungsdatum: 1911-1913\n" +
+                "Designer: Max-Berg\n" +
+                "Beschreibung: Ein Sport- und Unterhaltungsgebäude, das anlässlich des 100. Jahrestages der Verkündigung Friedrich Wilhelms III. Erbaut wurde und zum allgemeinen Widerstand gegen Napoleon Bonaparte aufrief. Dies ist das berühmteste modernistische Gebäude in Breslau. Zum Zeitpunkt des Baus war es eine außergewöhnliche Konstruktion, die durch die größte Ausdehnung der Kuppel gekennzeichnet war. Zur besseren Einbindung eines freistehenden Gebäudes in den umliegenden Stadtraum wurde ein größerer Ausstellungsraum konzipiert.";
+        latitude = 51.106944;
+        longitude = 17.076944;
+        Construction building1 = new Construction(image, content, title, description, latitude, longitude, url);
+
+        //SEDESOWCE DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/sede3.jpg?alt=media&token=8414a967-dce3-4df2-b183-193cd51befbb";
+        image = "sede3.jpg";
+        title = "Toilettenhäuser";
+        content = "Dies ist ein Komplex aus 6 Wohngebäuden und drei Geschäftspavillons am Grunwaldzki-Platz.";
+        description = "Erstellungsdatum: 1970-1973\n" +
+                "Designer: Jadwiga Grabowska-Hawrylak\n" +
+                "Beschreibung: Dies ist ein Komplex aus 6 Wohngebäuden und drei Geschäftspavillons am Grunwaldzki-Platz. Es wird von den Breslauern Wroclaws Wroclaw genannt und wegen der Klärgrube der Fensterbänke. Das Projekt umfasste den Bau von mit weißem Putz mit Klinkeroberflächen und dunklem Holz überzogenen Bootshäusern sowie das Klettern von Pflanzen in die Erhebungsvertiefungen.";
+        latitude = 51.110258;
+        longitude = 17.05397;
+        Construction building2 = new Construction(image, content, title, description, latitude, longitude, url);
+
+        //TRZONOLINOWIEC DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/trzono3.jpg?alt=media&token=6ddec7af-d96b-494d-9618-93c8134fee4f";
+        image = "trzono3.jpg";
+        title = "Line-Core-Gebäude";
+        content = "Eines der wenigen Gebäude dieser Art in Europa und der Welt.";
+        description = "Erstellungsdatum: 1961 - 1967\n" +
+                "Designer: Andrzej Skorupa und Jacek Burzyński\n" +
+                "Beschreibung: Eines der wenigen Gebäude dieser Art in Europa und der Welt. Es basiert auf der inneren Welle, die die vertikalen Drucklasten trägt. Die Decken sind Plattformen, die an Seilen aufgehängt sind.";
+        latitude = 51.101389;
+        longitude = 17.040278;
+        Construction building3 = new Construction(image, content, title, description, latitude, longitude, url);
+
+        //DOM IGLO DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/igloo.jpg?alt=media&token=1c828219-1797-4aef-bc70-426fe17f0410";
+        image = "igloo.jpg";
+        title = "UFO Haus";
+        content = "Das Haus des Architekten Witold Lipiński besticht durch seine Form und ungewöhnliche Herangehensweise an die Gestaltung von Wohngebäuden wie zu Zeiten des Aufstands.";
+        description = "Erstellungsdatum: 1962\n" +
+                "Designer: Witold Lipiński\n" +
+                "Beschreibung: Das Haus des Architekten Witold Lipiński besticht durch seine Form und ungewöhnliche Herangehensweise an die Gestaltung von Wohngebäuden wie zu Zeiten des Aufstands. Dieses energiesparende Haus wurde in den 1960er Jahren gebaut und vom berühmten Architekten Witold Lipiński handgefertigt.";
+        latitude = 51.119069;
+        longitude = 17.088445;
+        Construction building4 = new Construction(image, content, title, description, latitude, longitude, url);
+
+        //KREDKA I OŁÓWEK DE
+        url = "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/KiO.jpg?alt=media&token=e358febd-3150-41c7-9102-517157811c57";
+        image = "KiO.jpg";
+        title = "Wachsmalstift und Bleistift";
+        content = "Eines der bekanntesten Gebäude der Welt.";
+        description = "Erstellungsdatum: 1975-1982\n" +
+                "Designer: Krystyna und Marian Barscy\n" +
+                "Beschreibung: Eines der bekanntesten Gebäude der Welt. Die Akademien \" Wachsmalstift\" und \"Bleistift\" verdanken ihren Namen einer einzigartigen Form. Sie sind ein perfektes Beispiel für die Moderne. Entworfen von der berühmten Familie der Barsky-Spezialisten aus der Hochschularchitektur.";
+        latitude = 51.114426;
+        longitude = 17.067633;
+        Construction building5 = new Construction(image, content, title, description, latitude, longitude, url);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference();
+        reference.child("gems_de").child("1").setValue(building1);
+        reference.child("gems_de").child("2").setValue(building2);
+        reference.child("gems_de").child("3").setValue(building3);
+        reference.child("gems_de").child("4").setValue(building4);
+        reference.child("gems_de").child("5").setValue(building5);
+
+        List<Place> places = new ArrayList<>();
+        places.add(building1);
+        places.add(building2);
+        places.add(building3);
+        places.add(building4);
+        places.add(building5);
+
+        Places places2 = new Places(places);
+
+        uploadRouteDe(places2, "https://firebasestorage.googleapis.com/v0/b/wroguide-b3379.appspot.com/o/kamienica.JPG?alt=media&token=f2f88a97-e956-4070-b84e-c9074d5d2741",
+                "kamienica.JPG", "Die Route führt durch ungewöhnliche Gebäude in Breslau.","Route: Architekturperlen", "3");
     }
 
 }

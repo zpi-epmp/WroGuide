@@ -5,7 +5,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.wroguide.presenter.DataLoader;
+import com.wroguide.presenter.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +25,13 @@ public class PlaceDatabaseDAO implements PlaceDAO {
     @Override
     public List<Place> getAll() {
         String lang = Locale.getDefault().getLanguage();
+        if(!lang.equals("pl") && !lang.equals("de")){
+            lang = "en";
+        }
 
         final List<Place> places = new ArrayList<>();
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = Utils.getDatabase();
         DatabaseReference reference = database.getReference("bridges_" + lang);
         ValueEventListener listener = new ValueEventListener(){
             public void onDataChange(DataSnapshot snapshot) {
